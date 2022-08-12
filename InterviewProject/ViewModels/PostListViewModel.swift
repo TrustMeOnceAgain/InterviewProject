@@ -24,6 +24,14 @@ class PostListViewModel: ObservableObject {
         getPosts()
     }
     
+    func addPost(userId: Int, title: String, body: String) {
+        repository.createPost(userId: userId, title: title, body: body)
+            .sink(
+                receiveCompletion: { print($0) },
+                receiveValue: { print("\($0.title), \($0.body)") })
+            .store(in: &cancellable)
+    }
+    
     private func getPosts() {
         dataStatus = .loading
         repository.getPosts()

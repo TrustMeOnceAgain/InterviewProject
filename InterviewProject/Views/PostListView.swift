@@ -20,17 +20,21 @@ struct PostListView: View {
     var body: some View {
         contentView
             .navigationTitle("Posts")
+            .toolbar(content: {
+                Button("Add post") {
+                    viewModel.addPost(userId: 1, title: "Some title", body: "So body so new!")
+                }
+            })
     }
 }
 
-#warning("Pass environment object networking service")
 extension PostListView {
     @ViewBuilder
     private var contentView: some View {
         switch viewModel.dataStatus {
         case .loaded(data: let posts):
             List(posts, id: \.id) { model in
-                NavigationLink(destination: { CommentListView(viewModel: CommentListViewModel(postId: model.id, repository: repository)) }) {
+                NavigationLink(destination: { CommentListView(postId: model.id, repository: repository) }) {
                     Text(model.title)
                 }
             }

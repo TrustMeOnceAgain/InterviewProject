@@ -8,5 +8,5 @@
 import Foundation
 
 enum RequestError: Error { // TODO: extend
-    case badURL, parsingFailure, badRequest
+    case badURL, parsingFailure, badRequest, serverError
 }

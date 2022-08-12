@@ -36,7 +36,7 @@ extension Request {
             headers = nil
         case .json:
             bodyData = parameters?.encode()
-            headers = ["Accept": "application/json"]
+            headers = ["Accept": "application/json", "Content-Type": "application/json"]
         }
         
         var urlRequest = URLRequest(url: url)

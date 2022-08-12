@@ -9,10 +9,16 @@ import SwiftUI
 
 struct CommentListView: View {
     @ObservedObject var viewModel: CommentListViewModel
+    private var repository: JsonPlaceholderRepository
+    
+    init(postId: Int, repository: JsonPlaceholderRepository) {
+        self.viewModel = CommentListViewModel(postId: postId, repository: repository)
+        self.repository = repository
+    }
     
     var body: some View {
         contentView
-            .navigationTitle("Posts")
+            .navigationTitle("Comments")
     }
 }
 
@@ -41,6 +47,6 @@ extension CommentListView {
 
 struct CommentListView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentListView(viewModel: CommentListViewModel(postId: 1, repository: JsonPlaceholderRepository(networkService: MockedNetworkService(mockedRequests: []))))
+        CommentListView(postId: 1, repository: JsonPlaceholderRepository(networkService: MockedNetworkService(mockedRequests: [])))
     }
 }

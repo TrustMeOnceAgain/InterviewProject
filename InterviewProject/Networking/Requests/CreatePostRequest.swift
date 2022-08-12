@@ -12,7 +12,7 @@ struct CreatePostRequest: Request {
     let userId: Int
     let title, body: String
     
-    var httpMethod: HTTPMethod { .GET }
+    var httpMethod: HTTPMethod { .POST }
     var host: Host { .jsonPlaceholder }
     var path: String { "/posts" }
     var parameters: Parameters? { ["userId": userId,

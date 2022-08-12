@@ -27,7 +27,14 @@ class RealNetworkService: NetworkingService {
         
         return urlSession.dataTaskPublisher(for: urlRequest)
             .tryMap { (data: Data, response: URLResponse) in
-                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else { throw RequestError.badRequest }
+                guard let httpResponse = response as? HTTPURLResponse else { throw RequestError.badRequest }
+                switch httpResponse.statusCode {
+                case 400 ..< 500:
+                    throw RequestError.badRequest
+                case 500 ..< 600 :
+                    throw RequestError.serverError
+                default: break
+                }
                 return data
             }
             .decode(type: T.self, decoder: JSONDecoder())
