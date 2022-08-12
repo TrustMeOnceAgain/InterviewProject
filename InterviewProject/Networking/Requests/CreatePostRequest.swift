@@ -15,5 +15,7 @@ struct CreatePostRequest: Request {
     var httpMethod: HTTPMethod { .GET }
     var host: Host { .jsonPlaceholder }
     var path: String { "/posts" }
-    var parameters: Parameters? { nil }
+    var parameters: Parameters? { ["userId": userId,
+                                   "title": title,
+                                   "body": body] }
 }

@@ -8,30 +8,11 @@
 import Foundation
 import Combine
 
-protocol NetworkController {
-    func sendRequest<T: Decodable>(_ request: Request) async throws -> T
-    func asyncRequestToCombine<T>(_ asyncRequest: @escaping () async throws -> T, queue: DispatchQueue) -> AnyPublisher<T, RequestError>
+protocol NetworkingService {
+    func sendRequest<T: Decodable>(_ request: Request) -> AnyPublisher<T, RequestError>
 }
 
-extension NetworkController {
-    func asyncRequestToCombine<T>(_ asyncRequest: @escaping () async throws -> T, queue: DispatchQueue) -> AnyPublisher<T, RequestError> {
-        Future { promise in
-            Task {
-                do {
-                    promise(.success(try await asyncRequest()))
-                } catch (let error as RequestError){
-                    promise(.failure(error))
-                } catch {
-                    promise(.failure(.badRequest))
-                }
-            }
-        }
-        .receive(on: queue)
-        .eraseToAnyPublisher()
-    }
-}
-
-class RealNetworkController: NetworkController {
+class RealNetworkService: NetworkingService {
     
     private let urlSession: URLSession
     
@@ -41,29 +22,24 @@ class RealNetworkController: NetworkController {
         self.urlSession = URLSession(configuration: configuration)
     }
     
-#warning("TODO: map responseToError")
-    func sendRequest<T: Decodable>(_ request: Request) async throws -> T {
-        do {
-            let (data, _) = try await baseRequest(request)
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.dateDecodingStrategy = .millisecondsSince1970
-            guard let model = try? jsonDecoder.decode(T.self, from: data) else { throw RequestError.parsingFailure }
-            return model
-        } catch (let error as RequestError) {
-            throw error
-        } catch {
-            throw RequestError.badRequest
-        }
-    }
-    
-    private func baseRequest(_ request: Request) async throws -> (Data, URLResponse) {
-        guard let urlRequest = request.urlRequest else { throw RequestError.badURL }
-        guard let (data, response) = try? await urlSession.data(for: urlRequest) else { throw RequestError.badRequest }
-        return (data, response)
+    func sendRequest<T: Decodable>(_ request: Request) -> AnyPublisher<T, RequestError> {
+        guard let urlRequest = request.urlRequest else { return Result.Publisher(.failure(RequestError.badURL)).eraseToAnyPublisher() }
+        
+        return urlSession.dataTaskPublisher(for: urlRequest)
+            .tryMap { (data: Data, response: URLResponse) in
+                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else { throw RequestError.badRequest }
+                return data
+            }
+            .decode(type: T.self, decoder: JSONDecoder())
+            .mapError({ error in
+                guard let requestError = error as? RequestError else { return .badRequest }
+                return requestError
+            })
+            .eraseToAnyPublisher()
     }
 }
 
-class MockedNetworkController: NetworkController {
+class MockedNetworkService: NetworkingService {
     
     var mockedRequests: [MockedRequest]
     
@@ -71,18 +47,21 @@ class MockedNetworkController: NetworkController {
         self.mockedRequests = mockedRequests
     }
     
-    func sendRequest<T>(_ request: Request) async throws -> T where T : Decodable {
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .millisecondsSince1970
-        
-        guard let mockedRequest = mockedRequests.last(where: { $0.request.urlRequest == request.urlRequest }) else { throw RequestError.badRequest }
+    func sendRequest<T: Decodable>(_ request: Request) -> AnyPublisher<T, RequestError> {
+        guard let mockedRequest = mockedRequests.last(where: { $0.request.urlRequest == request.urlRequest }) else { return Result.Publisher(.failure(RequestError.badRequest)).eraseToAnyPublisher() }
         
         switch mockedRequest.response {
         case .success(let data):
-            guard let model = try? jsonDecoder.decode(T.self, from: data) else { throw RequestError.parsingFailure }
-            return model
+            return Result<JSONDecoder.Input, RequestError>.Publisher(.success(data))
+                .decode(type: T.self, decoder: JSONDecoder())
+                .mapError({ error in
+                    guard let requestError = error as? RequestError else { return RequestError.badRequest }
+                    return requestError
+                })
+                .eraseToAnyPublisher()
         case .failure(let error):
-            throw error
+            return Result.Publisher(.failure(error))
+                .eraseToAnyPublisher()
         }
     }
 }

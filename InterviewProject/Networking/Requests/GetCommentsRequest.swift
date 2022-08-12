@@ -13,7 +13,7 @@ struct GetCommentsRequest: Request {
     
     var httpMethod: HTTPMethod { .GET }
     var host: Host { .jsonPlaceholder }
-    var path: String { "/posts" }
+    var path: String { "/comments" }
     
     var parameters: Parameters? {
         guard let postId = postId else { return nil }

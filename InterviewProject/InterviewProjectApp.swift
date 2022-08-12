@@ -13,8 +13,14 @@ struct InterviewProjectApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            NavigationView {
+                PostListView(repository: JsonPlaceholderRepository(networkService: RealNetworkService()))
+            }
+            .navigationViewStyle(.stack)
+            
+                
+//            ContentView()
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

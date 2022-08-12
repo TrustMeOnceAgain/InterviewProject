@@ -26,6 +26,12 @@
 		40504A1228A697A0000F5084 /* GetPostsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40504A1128A697A0000F5084 /* GetPostsRequest.swift */; };
 		40504A1528A697CA000F5084 /* GetCommentsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40504A1428A697CA000F5084 /* GetCommentsRequest.swift */; };
 		40504A1728A69938000F5084 /* CreatePostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40504A1628A69938000F5084 /* CreatePostRequest.swift */; };
+		40EEAE5128A69CB2000EE69E /* JsonPlaceholderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EEAE5028A69CB2000EE69E /* JsonPlaceholderRepository.swift */; };
+		40EEAE5428A6A7C5000EE69E /* PostListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EEAE5328A6A7C5000EE69E /* PostListView.swift */; };
+		40EEAE5728A6A854000EE69E /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EEAE5628A6A854000EE69E /* PostListViewModel.swift */; };
+		40EEAE5928A6A89C000EE69E /* ViewDataStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EEAE5828A6A89C000EE69E /* ViewDataStatus.swift */; };
+		40EEAE5D28A6AE4D000EE69E /* CommentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EEAE5C28A6AE4D000EE69E /* CommentListViewModel.swift */; };
+		40EEAE5F28A6AEED000EE69E /* CommentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EEAE5E28A6AEED000EE69E /* CommentListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +74,12 @@
 		40504A1128A697A0000F5084 /* GetPostsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPostsRequest.swift; sourceTree = "<group>"; };
 		40504A1428A697CA000F5084 /* GetCommentsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCommentsRequest.swift; sourceTree = "<group>"; };
 		40504A1628A69938000F5084 /* CreatePostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostRequest.swift; sourceTree = "<group>"; };
+		40EEAE5028A69CB2000EE69E /* JsonPlaceholderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPlaceholderRepository.swift; sourceTree = "<group>"; };
+		40EEAE5328A6A7C5000EE69E /* PostListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListView.swift; sourceTree = "<group>"; };
+		40EEAE5628A6A854000EE69E /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
+		40EEAE5828A6A89C000EE69E /* ViewDataStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDataStatus.swift; sourceTree = "<group>"; };
+		40EEAE5C28A6AE4D000EE69E /* CommentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListViewModel.swift; sourceTree = "<group>"; };
+		40EEAE5E28A6AEED000EE69E /* CommentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +130,8 @@
 		405049D128A69186000F5084 /* InterviewProject */ = {
 			isa = PBXGroup;
 			children = (
+				40EEAE5528A6A7C9000EE69E /* ViewModels */,
+				40EEAE5228A6A7B5000EE69E /* Views */,
 				40504A0E28A696B3000F5084 /* Models */,
 				40504A0128A693B7000F5084 /* Networking */,
 				405049D228A69186000F5084 /* InterviewProjectApp.swift */,
@@ -158,6 +172,7 @@
 		40504A0128A693B7000F5084 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				40EEAE4F28A69CA1000EE69E /* Repositories */,
 				40504A1328A697AD000F5084 /* Requests */,
 				40504A0428A69439000F5084 /* Host.swift */,
 				40504A0228A6941F000F5084 /* Request.swift */,
@@ -185,6 +200,33 @@
 				40504A1628A69938000F5084 /* CreatePostRequest.swift */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		40EEAE4F28A69CA1000EE69E /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				40EEAE5028A69CB2000EE69E /* JsonPlaceholderRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		40EEAE5228A6A7B5000EE69E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				40EEAE5328A6A7C5000EE69E /* PostListView.swift */,
+				40EEAE5E28A6AEED000EE69E /* CommentListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		40EEAE5528A6A7C9000EE69E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				40EEAE5828A6A89C000EE69E /* ViewDataStatus.swift */,
+				40EEAE5628A6A854000EE69E /* PostListViewModel.swift */,
+				40EEAE5C28A6AE4D000EE69E /* CommentListViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,15 +359,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40EEAE5928A6A89C000EE69E /* ViewDataStatus.swift in Sources */,
 				40504A1528A697CA000F5084 /* GetCommentsRequest.swift in Sources */,
 				40504A0928A694A8000F5084 /* RequestError.swift in Sources */,
 				405049DC28A69188000F5084 /* Persistence.swift in Sources */,
 				40504A1728A69938000F5084 /* CreatePostRequest.swift in Sources */,
 				40504A0B28A694FC000F5084 /* MockedRequest.swift in Sources */,
 				405049DF28A69188000F5084 /* InterviewProject.xcdatamodeld in Sources */,
+				40EEAE5128A69CB2000EE69E /* JsonPlaceholderRepository.swift in Sources */,
 				40504A0328A6941F000F5084 /* Request.swift in Sources */,
 				40504A0528A69439000F5084 /* Host.swift in Sources */,
+				40EEAE5D28A6AE4D000EE69E /* CommentListViewModel.swift in Sources */,
 				405049D528A69186000F5084 /* ContentView.swift in Sources */,
+				40EEAE5728A6A854000EE69E /* PostListViewModel.swift in Sources */,
+				40EEAE5F28A6AEED000EE69E /* CommentListView.swift in Sources */,
+				40EEAE5428A6A7C5000EE69E /* PostListView.swift in Sources */,
 				40504A0728A69498000F5084 /* NetworkingService.swift in Sources */,
 				405049D328A69186000F5084 /* InterviewProjectApp.swift in Sources */,
 				40504A1028A696CB000F5084 /* Comment.swift in Sources */,

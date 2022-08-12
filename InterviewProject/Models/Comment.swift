@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Comment: Codable {
+struct Comment: Decodable {
     let id, postId: Int
     let name, email, body: String
 }
