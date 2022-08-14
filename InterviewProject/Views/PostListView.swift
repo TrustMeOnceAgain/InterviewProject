@@ -71,25 +71,24 @@ extension PostListView {
     @ToolbarContentBuilder
     private var toolbarView: some ToolbarContent {
         ToolbarItemGroup(placement: .navigationBarTrailing) {
-            Button("Refresh") {
-                viewModel.fetchData()
-            }
+            Button(action: { viewModel.fetchData() }, label: {
+                Image(systemName: "arrow.triangle.2.circlepath.circle")
+            })
         }
         ToolbarItemGroup(placement: .navigationBarLeading) {
             Button(action: { viewModel.usingLocalData.toggle() }, label: {
-                Text(viewModel.usingLocalData ? "Local" : "Server")
-                Image(systemName: viewModel.usingLocalData ? "internaldrive.fill" : "cloud.fill")
+                Image(systemName: viewModel.usingLocalData ? "cloud" : "cloud.fill")
                 
             })
             if !viewModel.usingLocalData {
                 Button(action: { viewModel.saveToLocalPosts() }, label: {
                     Text("Save")
-                    Image(systemName: "plus.rectangle.on.folder.fill")
+                    Image(systemName: "externaldrive.fill.badge.plus")
                 })
             } else {
                 Button(action: { viewModel.deleteLocalPosts() }, label: {
                     Text("Delete")
-                    Image(systemName: "folder.fill.badge.minus")
+                    Image(systemName: "externaldrive.fill.badge.xmark")
                 })
             }
         }
