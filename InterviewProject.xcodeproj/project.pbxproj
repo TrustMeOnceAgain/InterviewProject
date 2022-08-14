@@ -14,8 +14,10 @@
 		402D2F1728A9305200E10BE6 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F1628A9305200E10BE6 /* CellView.swift */; };
 		402D2F1928A930A200E10BE6 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F1828A930A200E10BE6 /* CellViewModel.swift */; };
 		402D2F1B28A930E800E10BE6 /* ColorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F1A28A930E800E10BE6 /* ColorStyle.swift */; };
+		402D2F1F28A9480A00E10BE6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F1E28A9480A00E10BE6 /* Colors.xcassets */; };
+		402D2F2128A9494B00E10BE6 /* DeleteCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F2028A9494B00E10BE6 /* DeleteCommentRequest.swift */; };
+		402D2F2628A94D6A00E10BE6 /* Collections+safeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F2528A94D6A00E10BE6 /* Collections+safeSubscript.swift */; };
 		405049D328A69186000F5084 /* InterviewProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049D228A69186000F5084 /* InterviewProjectApp.swift */; };
-		405049D528A69186000F5084 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049D428A69186000F5084 /* ContentView.swift */; };
 		405049D728A69188000F5084 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405049D628A69188000F5084 /* Assets.xcassets */; };
 		405049DA28A69188000F5084 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405049D928A69188000F5084 /* Preview Assets.xcassets */; };
 		405049DC28A69188000F5084 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049DB28A69188000F5084 /* PersistenceService.swift */; };
@@ -67,9 +69,11 @@
 		402D2F1628A9305200E10BE6 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		402D2F1828A930A200E10BE6 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		402D2F1A28A930E800E10BE6 /* ColorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStyle.swift; sourceTree = "<group>"; };
+		402D2F1E28A9480A00E10BE6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		402D2F2028A9494B00E10BE6 /* DeleteCommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCommentRequest.swift; sourceTree = "<group>"; };
+		402D2F2528A94D6A00E10BE6 /* Collections+safeSubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+safeSubscript.swift"; sourceTree = "<group>"; };
 		405049CF28A69186000F5084 /* InterviewProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterviewProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405049D228A69186000F5084 /* InterviewProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewProjectApp.swift; sourceTree = "<group>"; };
-		405049D428A69186000F5084 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		405049D628A69188000F5084 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		405049D928A69188000F5084 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		405049DB28A69188000F5084 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
@@ -135,10 +139,48 @@
 		402D2F1C28A9475000E10BE6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				402D2F2428A94D5300E10BE6 /* Extensions */,
 				402D2F0F28A92B3800E10BE6 /* DIManager.swift */,
 				402D2F1A28A930E800E10BE6 /* ColorStyle.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		402D2F1D28A947F200E10BE6 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				405049D628A69188000F5084 /* Assets.xcassets */,
+				402D2F1E28A9480A00E10BE6 /* Colors.xcassets */,
+				405049D928A69188000F5084 /* Preview Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		402D2F2228A9495F00E10BE6 /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				40504A1128A697A0000F5084 /* GetPostsRequest.swift */,
+				40504A1628A69938000F5084 /* CreatePostRequest.swift */,
+				402D2F0D28A91DE800E10BE6 /* DeletePostRequest.swift */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		402D2F2328A9496400E10BE6 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				40504A1428A697CA000F5084 /* GetCommentsRequest.swift */,
+				402D2F2028A9494B00E10BE6 /* DeleteCommentRequest.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		402D2F2428A94D5300E10BE6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				402D2F2528A94D6A00E10BE6 /* Collections+safeSubscript.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		405049C628A69186000F5084 = {
@@ -164,6 +206,7 @@
 		405049D128A69186000F5084 /* InterviewProject */ = {
 			isa = PBXGroup;
 			children = (
+				402D2F1D28A947F200E10BE6 /* Assets */,
 				402D2F1C28A9475000E10BE6 /* Utils */,
 				40EEAE4F28A69CA1000EE69E /* Repositories */,
 				402D2F1128A92E0200E10BE6 /* Services */,
@@ -172,20 +215,9 @@
 				40EEAE5228A6A7B5000EE69E /* Views */,
 				40EEAE5528A6A7C9000EE69E /* ViewModels */,
 				405049D228A69186000F5084 /* InterviewProjectApp.swift */,
-				405049D428A69186000F5084 /* ContentView.swift */,
-				405049D628A69188000F5084 /* Assets.xcassets */,
 				405049DD28A69188000F5084 /* InterviewProject.xcdatamodeld */,
-				405049D828A69188000F5084 /* Preview Content */,
 			);
 			path = InterviewProject;
-			sourceTree = "<group>";
-		};
-		405049D828A69188000F5084 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				405049D928A69188000F5084 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		405049E728A69188000F5084 /* InterviewProjectTests */ = {
@@ -231,10 +263,8 @@
 		40504A1328A697AD000F5084 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				40504A1128A697A0000F5084 /* GetPostsRequest.swift */,
-				40504A1428A697CA000F5084 /* GetCommentsRequest.swift */,
-				40504A1628A69938000F5084 /* CreatePostRequest.swift */,
-				402D2F0D28A91DE800E10BE6 /* DeletePostRequest.swift */,
+				402D2F2328A9496400E10BE6 /* Comments */,
+				402D2F2228A9495F00E10BE6 /* Posts */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -373,6 +403,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				402D2F1F28A9480A00E10BE6 /* Colors.xcassets in Resources */,
 				405049DA28A69188000F5084 /* Preview Assets.xcassets in Resources */,
 				405049D728A69188000F5084 /* Assets.xcassets in Resources */,
 			);
@@ -402,6 +433,7 @@
 				402D2F1028A92B3800E10BE6 /* DIManager.swift in Sources */,
 				402D2F0E28A91DE800E10BE6 /* DeletePostRequest.swift in Sources */,
 				40EEAE5928A6A89C000EE69E /* ViewDataStatus.swift in Sources */,
+				402D2F2628A94D6A00E10BE6 /* Collections+safeSubscript.swift in Sources */,
 				402D2F1528A92EEF00E10BE6 /* ParametersEncoding.swift in Sources */,
 				40504A1528A697CA000F5084 /* GetCommentsRequest.swift in Sources */,
 				402D2F1328A92ECA00E10BE6 /* HttpMethod.swift in Sources */,
@@ -411,12 +443,12 @@
 				40504A1728A69938000F5084 /* CreatePostRequest.swift in Sources */,
 				40504A0B28A694FC000F5084 /* MockedRequest.swift in Sources */,
 				402D2F1B28A930E800E10BE6 /* ColorStyle.swift in Sources */,
+				402D2F2128A9494B00E10BE6 /* DeleteCommentRequest.swift in Sources */,
 				405049DF28A69188000F5084 /* InterviewProject.xcdatamodeld in Sources */,
 				40EEAE5128A69CB2000EE69E /* JsonPlaceholderWebRepository.swift in Sources */,
 				40504A0328A6941F000F5084 /* Request.swift in Sources */,
 				40504A0528A69439000F5084 /* Host.swift in Sources */,
 				40EEAE5D28A6AE4D000EE69E /* CommentListViewModel.swift in Sources */,
-				405049D528A69186000F5084 /* ContentView.swift in Sources */,
 				40EEAE5728A6A854000EE69E /* PostListViewModel.swift in Sources */,
 				40EEAE5F28A6AEED000EE69E /* CommentListView.swift in Sources */,
 				40EEAE5428A6A7C5000EE69E /* PostListView.swift in Sources */,
@@ -584,7 +616,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"InterviewProject/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -612,7 +644,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"InterviewProject/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

@@ -11,3 +11,13 @@ struct Comment: Decodable {
     let id, postId: Int
     let name, email, body: String
 }
+
+extension Comment: Comparable {
+    static func < (lhs: Comment, rhs: Comment) -> Bool {
+        guard lhs.postId == rhs.postId else { return lhs.postId < rhs.postId }
+        guard lhs.id == rhs.id else { return lhs.id < rhs.id }
+        guard lhs.name == rhs.name else { return lhs.name < rhs.name }
+        guard lhs.body == rhs.body else { return lhs.body < rhs.body }
+        return lhs.email < rhs.email
+    }
+}

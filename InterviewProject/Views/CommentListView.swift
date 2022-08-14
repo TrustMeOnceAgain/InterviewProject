@@ -17,6 +17,9 @@ struct CommentListView: View {
     var body: some View {
         contentView
             .navigationTitle("Comments")
+            .toolbar {
+                toolbarView
+            }
     }
 }
 
@@ -25,8 +28,14 @@ extension CommentListView {
     private var contentView: some View {
         switch viewModel.dataStatus {
         case .loaded(data: let comments):
-            List(comments, id: \.id) { model in
-                createCellView(from: model)
+            List {
+                ForEach(comments, id: \.id) { model in
+                    createCellView(from: model)
+                }
+                .onDelete(perform: { indexes in
+                    guard let index = indexes.first else { return }
+                    viewModel.deleteComment(index: index)
+                })
             }
         case .loading:
             ProgressView()
@@ -39,6 +48,22 @@ extension CommentListView {
                 .onAppear {
                     viewModel.fetchData()
                 }
+        }
+    }
+    
+    @ToolbarContentBuilder
+    private var toolbarView: some ToolbarContent {
+        ToolbarItemGroup(placement: .navigationBarTrailing) {
+            Button(action: { viewModel.fetchData() }, label: {
+                Image(systemName: "arrow.triangle.2.circlepath.circle")
+            })
+            EditButton()
+        }
+        ToolbarItemGroup(placement: .bottomBar) {
+            Button(action: { viewModel.sortedAscending.toggle() }, label: {
+                Text("Sort")
+                Image(systemName: viewModel.sortedAscending ? "arrow.up.arrow.down.square.fill" : "arrow.up.arrow.down.square")
+            })
         }
     }
     
