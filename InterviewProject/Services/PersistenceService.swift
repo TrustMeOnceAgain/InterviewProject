@@ -10,6 +10,23 @@ import Combine
 
 struct PersistenceService {
 
+    let container: NSPersistentContainer
+
+    init(inMemory: Bool = false) {
+        container = NSPersistentContainer(name: "InterviewProject")
+        
+        if inMemory {
+            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        }
+        
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                print("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        container.viewContext.automaticallyMergesChangesFromParent = true
+    }
+    
     static var preview: PersistenceService = {
         let result = PersistenceService(inMemory: true)
         let viewContext = result.container.viewContext
@@ -28,23 +45,6 @@ struct PersistenceService {
         }
         return result
     }()
-
-    let container: NSPersistentContainer
-
-    init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "InterviewProject")
-        
-        if inMemory {
-            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-        }
-        
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                print("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        container.viewContext.automaticallyMergesChangesFromParent = true
-    }
     
     func fetchData<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>) -> AnyPublisher<[T], Error> {
         return Future<[T], Error> { [weak container] promise in

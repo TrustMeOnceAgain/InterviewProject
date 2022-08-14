@@ -114,7 +114,6 @@ struct PostListView_Previews: PreviewProvider {
                     .preferredColorScheme(colorScheme)
                 }
             }
-            
         }
         .previewLayout(.device)
     }

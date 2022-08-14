@@ -132,6 +132,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		402D2F1C28A9475000E10BE6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				402D2F0F28A92B3800E10BE6 /* DIManager.swift */,
+				402D2F1A28A930E800E10BE6 /* ColorStyle.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		405049C628A69186000F5084 = {
 			isa = PBXGroup;
 			children = (
@@ -155,19 +164,18 @@
 		405049D128A69186000F5084 /* InterviewProject */ = {
 			isa = PBXGroup;
 			children = (
+				402D2F1C28A9475000E10BE6 /* Utils */,
 				40EEAE4F28A69CA1000EE69E /* Repositories */,
 				402D2F1128A92E0200E10BE6 /* Services */,
 				40504A0128A693B7000F5084 /* Networking */,
 				40504A0E28A696B3000F5084 /* Models */,
 				40EEAE5228A6A7B5000EE69E /* Views */,
 				40EEAE5528A6A7C9000EE69E /* ViewModels */,
-				402D2F0F28A92B3800E10BE6 /* DIManager.swift */,
 				405049D228A69186000F5084 /* InterviewProjectApp.swift */,
 				405049D428A69186000F5084 /* ContentView.swift */,
 				405049D628A69188000F5084 /* Assets.xcassets */,
 				405049DD28A69188000F5084 /* InterviewProject.xcdatamodeld */,
 				405049D828A69188000F5084 /* Preview Content */,
-				402D2F1A28A930E800E10BE6 /* ColorStyle.swift */,
 			);
 			path = InterviewProject;
 			sourceTree = "<group>";

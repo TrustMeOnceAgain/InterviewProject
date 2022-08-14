@@ -27,20 +27,14 @@ class RealNetworkService: NetworkingService {
         guard let urlRequest = request.urlRequest else { return Result.Publisher(.failure(RequestError.badURL)).eraseToAnyPublisher() }
         
         return urlSession.dataTaskPublisher(for: urlRequest)
-            .tryMap { (data: Data, response: URLResponse) in
-                guard let httpResponse = response as? HTTPURLResponse else { throw RequestError.badRequest }
-                switch httpResponse.statusCode { // TODO: move somewhere else
-                case 400 ..< 500:
-                    throw RequestError.badRequest
-                case 500 ..< 600 :
-                    throw RequestError.serverError
-                default: break
-                }
+            .tryMap { [weak self] (data: Data, response: URLResponse) in
+                guard let httpResponse = response as? HTTPURLResponse else { throw RequestError.other(message: "Invalid response format") }
+                try self?.handleStatusCode(httpResponse.statusCode)
                 return data
             }
             .decode(type: T.self, decoder: JSONDecoder())
             .mapError({ error in
-                guard let requestError = error as? RequestError else { return .badRequest }
+                guard let requestError = error as? RequestError else { return .parsingFailure }
                 return requestError
             })
             .eraseToAnyPublisher()
@@ -50,21 +44,25 @@ class RealNetworkService: NetworkingService {
         guard let urlRequest = request.urlRequest else { return Result.Publisher(.failure(RequestError.badURL)).eraseToAnyPublisher() }
         
         return urlSession.dataTaskPublisher(for: urlRequest)
-            .tryMap { (data: Data, response: URLResponse) in
-                guard let httpResponse = response as? HTTPURLResponse else { throw RequestError.badRequest }
-                switch httpResponse.statusCode { // TODO: move somewhere else
-                case 400 ..< 500:
-                    throw RequestError.badRequest
-                case 500 ..< 600 :
-                    throw RequestError.serverError
-                default: break
-                }
+            .tryMap { [weak self] (data: Data, response: URLResponse) in
+                guard let httpResponse = response as? HTTPURLResponse else { throw RequestError.other(message: "Invalid response format") }
+                try self?.handleStatusCode(httpResponse.statusCode)
             }
             .mapError({ error in
-                guard let requestError = error as? RequestError else { return .badRequest }
+                guard let requestError = error as? RequestError else { return .other(message: error.localizedDescription) }
                 return requestError
             })
             .eraseToAnyPublisher()
+    }
+    
+    private func handleStatusCode(_ statusCode: Int) throws {
+        switch statusCode {
+        case 400 ..< 500:
+            throw RequestError.badRequest
+        case 500 ..< 600 :
+            throw RequestError.serverError
+        default: break
+        }
     }
 }
 
@@ -81,11 +79,11 @@ class MockedNetworkService: NetworkingService {
         
         switch mockedRequest.response {
         case .success(let data):
-            guard let data = data else { return Result.Publisher(.failure(RequestError.parsingFailure)).eraseToAnyPublisher() }
+            guard let data = data else { return Result.Publisher(.failure(RequestError.other(message: "No data!"))).eraseToAnyPublisher() }
             return Result<JSONDecoder.Input, RequestError>.Publisher(.success(data))
                 .decode(type: T.self, decoder: JSONDecoder())
                 .mapError({ error in
-                    guard let requestError = error as? RequestError else { return RequestError.badRequest }
+                    guard let requestError = error as? RequestError else { return RequestError.parsingFailure }
                     return requestError
                 })
                 .eraseToAnyPublisher()
