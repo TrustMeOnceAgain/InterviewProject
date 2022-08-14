@@ -26,7 +26,7 @@ extension CommentListView {
         switch viewModel.dataStatus {
         case .loaded(data: let comments):
             List(comments, id: \.id) { model in
-                Text(model.body)
+                createCellView(from: model)
             }
         case .loading:
             ProgressView()
@@ -40,6 +40,10 @@ extension CommentListView {
                     viewModel.fetchData()
                 }
         }
+    }
+    
+    private func createCellView(from model: Comment) -> CellView {
+        CellView(viewModel: CellViewModel(title: model.body, leftText: String(model.id)))
     }
 }
 

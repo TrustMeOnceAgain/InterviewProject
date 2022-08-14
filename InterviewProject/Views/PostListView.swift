@@ -44,10 +44,10 @@ extension PostListView {
             } else {
                 List(posts, id: \.id) { model in
                     if viewModel.usingLocalData {
-                        Text(model.title)
+                        createCellView(from: model)
                     } else {
                         NavigationLink(destination: { CommentListView(postId: model.id, repository: webRepository) }) {
-                            Text(model.title)
+                            createCellView(from: model)
                         }
                     }
                 }
@@ -92,6 +92,10 @@ extension PostListView {
                 }
             }
         }
+    }
+    
+    private func createCellView(from model: Post) -> CellView {
+        CellView(viewModel: CellViewModel(title: model.title, leftText: String(model.id)))
     }
 }
 

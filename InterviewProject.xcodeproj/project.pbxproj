@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		402D2F0E28A91DE800E10BE6 /* DeletePostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F0D28A91DE800E10BE6 /* DeletePostRequest.swift */; };
 		402D2F1028A92B3800E10BE6 /* DIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F0F28A92B3800E10BE6 /* DIManager.swift */; };
+		402D2F1328A92ECA00E10BE6 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F1228A92ECA00E10BE6 /* HttpMethod.swift */; };
+		402D2F1528A92EEF00E10BE6 /* ParametersEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F1428A92EEF00E10BE6 /* ParametersEncoding.swift */; };
+		402D2F1728A9305200E10BE6 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F1628A9305200E10BE6 /* CellView.swift */; };
+		402D2F1928A930A200E10BE6 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F1828A930A200E10BE6 /* CellViewModel.swift */; };
+		402D2F1B28A930E800E10BE6 /* ColorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F1A28A930E800E10BE6 /* ColorStyle.swift */; };
 		405049D328A69186000F5084 /* InterviewProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049D228A69186000F5084 /* InterviewProjectApp.swift */; };
 		405049D528A69186000F5084 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049D428A69186000F5084 /* ContentView.swift */; };
 		405049D728A69188000F5084 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405049D628A69188000F5084 /* Assets.xcassets */; };
@@ -57,6 +62,11 @@
 /* Begin PBXFileReference section */
 		402D2F0D28A91DE800E10BE6 /* DeletePostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePostRequest.swift; sourceTree = "<group>"; };
 		402D2F0F28A92B3800E10BE6 /* DIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIManager.swift; sourceTree = "<group>"; };
+		402D2F1228A92ECA00E10BE6 /* HttpMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
+		402D2F1428A92EEF00E10BE6 /* ParametersEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersEncoding.swift; sourceTree = "<group>"; };
+		402D2F1628A9305200E10BE6 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		402D2F1828A930A200E10BE6 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
+		402D2F1A28A930E800E10BE6 /* ColorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStyle.swift; sourceTree = "<group>"; };
 		405049CF28A69186000F5084 /* InterviewProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterviewProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405049D228A69186000F5084 /* InterviewProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewProjectApp.swift; sourceTree = "<group>"; };
 		405049D428A69186000F5084 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -157,6 +167,7 @@
 				405049D628A69188000F5084 /* Assets.xcassets */,
 				405049DD28A69188000F5084 /* InterviewProject.xcdatamodeld */,
 				405049D828A69188000F5084 /* Preview Content */,
+				402D2F1A28A930E800E10BE6 /* ColorStyle.swift */,
 			);
 			path = InterviewProject;
 			sourceTree = "<group>";
@@ -191,6 +202,8 @@
 			children = (
 				40504A1328A697AD000F5084 /* Requests */,
 				40504A0428A69439000F5084 /* Host.swift */,
+				402D2F1228A92ECA00E10BE6 /* HttpMethod.swift */,
+				402D2F1428A92EEF00E10BE6 /* ParametersEncoding.swift */,
 				40504A0228A6941F000F5084 /* Request.swift */,
 				40504A0828A694A8000F5084 /* RequestError.swift */,
 				40504A0A28A694FC000F5084 /* MockedRequest.swift */,
@@ -232,6 +245,7 @@
 			children = (
 				40EEAE5328A6A7C5000EE69E /* PostListView.swift */,
 				40EEAE5E28A6AEED000EE69E /* CommentListView.swift */,
+				402D2F1628A9305200E10BE6 /* CellView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -240,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				40EEAE5828A6A89C000EE69E /* ViewDataStatus.swift */,
+				402D2F1828A930A200E10BE6 /* CellViewModel.swift */,
 				40EEAE5628A6A854000EE69E /* PostListViewModel.swift */,
 				40EEAE5C28A6AE4D000EE69E /* CommentListViewModel.swift */,
 			);
@@ -379,12 +394,15 @@
 				402D2F1028A92B3800E10BE6 /* DIManager.swift in Sources */,
 				402D2F0E28A91DE800E10BE6 /* DeletePostRequest.swift in Sources */,
 				40EEAE5928A6A89C000EE69E /* ViewDataStatus.swift in Sources */,
+				402D2F1528A92EEF00E10BE6 /* ParametersEncoding.swift in Sources */,
 				40504A1528A697CA000F5084 /* GetCommentsRequest.swift in Sources */,
+				402D2F1328A92ECA00E10BE6 /* HttpMethod.swift in Sources */,
 				408DE9CF28A8E54500FF019C /* JsonPlaceholderDBRepository.swift in Sources */,
 				40504A0928A694A8000F5084 /* RequestError.swift in Sources */,
 				405049DC28A69188000F5084 /* PersistenceService.swift in Sources */,
 				40504A1728A69938000F5084 /* CreatePostRequest.swift in Sources */,
 				40504A0B28A694FC000F5084 /* MockedRequest.swift in Sources */,
+				402D2F1B28A930E800E10BE6 /* ColorStyle.swift in Sources */,
 				405049DF28A69188000F5084 /* InterviewProject.xcdatamodeld in Sources */,
 				40EEAE5128A69CB2000EE69E /* JsonPlaceholderWebRepository.swift in Sources */,
 				40504A0328A6941F000F5084 /* Request.swift in Sources */,
@@ -396,6 +414,8 @@
 				40EEAE5428A6A7C5000EE69E /* PostListView.swift in Sources */,
 				40504A0728A69498000F5084 /* NetworkingService.swift in Sources */,
 				405049D328A69186000F5084 /* InterviewProjectApp.swift in Sources */,
+				402D2F1928A930A200E10BE6 /* CellViewModel.swift in Sources */,
+				402D2F1728A9305200E10BE6 /* CellView.swift in Sources */,
 				40504A1028A696CB000F5084 /* Comment.swift in Sources */,
 				40504A1228A697A0000F5084 /* GetPostsRequest.swift in Sources */,
 				40504A0D28A696AE000F5084 /* Post.swift in Sources */,

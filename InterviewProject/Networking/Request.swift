@@ -49,14 +49,6 @@ extension Request {
 
 typealias Parameters = [String: Any]
 
-enum HTTPMethod: String {
-    case GET, POST, PUT, DELETE, PATCH
-}
-
-enum ParameteresEncoding {
-    case url, json
-}
-
 private extension Parameters {
     func encode() -> Data? {
         try? JSONSerialization.data(withJSONObject: self)
