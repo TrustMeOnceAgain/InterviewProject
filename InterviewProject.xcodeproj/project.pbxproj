@@ -22,6 +22,7 @@
 		402D2F2D28A9644300E10BE6 /* GetPostsRequestMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F2C28A9644300E10BE6 /* GetPostsRequestMock.json */; };
 		402D2F2F28A9677900E10BE6 /* GetCommentsRequestMock_PostId1.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F2E28A9677900E10BE6 /* GetCommentsRequestMock_PostId1.json */; };
 		402D2F3128A9689000E10BE6 /* GetCommentsRequestMock_PostId2.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F3028A9689000E10BE6 /* GetCommentsRequestMock_PostId2.json */; };
+		402D2F3328A9713200E10BE6 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F3228A9713200E10BE6 /* NetworkServiceTests.swift */; };
 		405049D328A69186000F5084 /* InterviewProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049D228A69186000F5084 /* InterviewProjectApp.swift */; };
 		405049D728A69188000F5084 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405049D628A69188000F5084 /* Assets.xcassets */; };
 		405049DA28A69188000F5084 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405049D928A69188000F5084 /* Preview Assets.xcassets */; };
@@ -82,6 +83,7 @@
 		402D2F2C28A9644300E10BE6 /* GetPostsRequestMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetPostsRequestMock.json; sourceTree = "<group>"; };
 		402D2F2E28A9677900E10BE6 /* GetCommentsRequestMock_PostId1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetCommentsRequestMock_PostId1.json; sourceTree = "<group>"; };
 		402D2F3028A9689000E10BE6 /* GetCommentsRequestMock_PostId2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetCommentsRequestMock_PostId2.json; sourceTree = "<group>"; };
+		402D2F3228A9713200E10BE6 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
 		405049CF28A69186000F5084 /* InterviewProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterviewProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405049D228A69186000F5084 /* InterviewProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewProjectApp.swift; sourceTree = "<group>"; };
 		405049D628A69188000F5084 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				405049E828A69188000F5084 /* InterviewProjectTests.swift */,
 				402D2F2728A962DA00E10BE6 /* JsonLoader.swift */,
 				402D2F2A28A963C500E10BE6 /* JsonPlaceholderWebRepositoryTests.swift */,
+				402D2F3228A9713200E10BE6 /* NetworkServiceTests.swift */,
 			);
 			path = InterviewProjectTests;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 			files = (
 				402D2F2B28A963C500E10BE6 /* JsonPlaceholderWebRepositoryTests.swift in Sources */,
 				402D2F2828A962DA00E10BE6 /* JsonLoader.swift in Sources */,
+				402D2F3328A9713200E10BE6 /* NetworkServiceTests.swift in Sources */,
 				405049E928A69188000F5084 /* InterviewProjectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

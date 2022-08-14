@@ -40,6 +40,31 @@ class JsonPlaceholderWebRepositoryTests: XCTestCase {
         XCTAssertEqual(resultPosts, expectedResult)
     }
     
+    func testGetPosts_Error() {
+        
+        let mockedRequests = [MockedRequest(request: GetPostsRequest(), response: .failure(.serverError))]
+        let repository = JsonPlaceholderWebRepository(networkService: MockedNetworkService(mockedRequests: mockedRequests))
+        let expectedResult: RequestError = .serverError
+        
+        let expectation = XCTestExpectation(description: "GetPostsExpectation")
+        var resultPosts: RequestError? = nil
+        
+        repository
+            .getPosts()
+            .sink(
+                receiveCompletion: {
+                    guard case .failure(let error) = $0 else { XCTFail(); return }
+                    resultPosts = error
+                    expectation.fulfill()
+                },
+                receiveValue: { _ in}
+            )
+            .store(in: &cancellable)
+        
+        wait(for: [expectation], timeout: expectationTimeout)
+        XCTAssertEqual(resultPosts, expectedResult)
+    }
+    
     func testGetComments() {
         
         let mockedRequests = [

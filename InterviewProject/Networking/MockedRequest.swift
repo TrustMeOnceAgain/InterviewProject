@@ -10,6 +10,11 @@ import Foundation
 struct MockedRequest {
     let request: Request
     let response: Result<Data?, RequestError>
+    
+    var error: RequestError? {
+        guard case .failure(let error) = response else { return nil }
+        return error
+    }
 }
 
 extension MockedRequest: Equatable {
