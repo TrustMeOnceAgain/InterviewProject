@@ -63,9 +63,9 @@ class CommentListViewModel: ObservableObject {
                     guard case .failure(let error) = $0 else { return }
                     self?.dataStatus = .error(error)
                 },
-                  receiveValue: { [weak self] in
-                      self?.comments = $0
-            })
+                receiveValue: { [weak self] in
+                    self?.comments = $0
+                })
             .store(in: &cancellable)
     }
 }

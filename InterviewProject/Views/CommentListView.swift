@@ -61,7 +61,9 @@ extension CommentListView {
             Button(action: { viewModel.fetchData() }, label: {
                 Image(systemName: "arrow.triangle.2.circlepath.circle")
             })
-            EditButton()
+            if viewModel.dataStatus.data?.isEmpty == false {
+                EditButton()
+            }
         }
         ToolbarItemGroup(placement: .bottomBar) {
             Button(action: { viewModel.sortedAscending.toggle() }, label: {
