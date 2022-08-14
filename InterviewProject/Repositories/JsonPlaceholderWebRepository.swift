@@ -29,8 +29,15 @@ class JsonPlaceholderWebRepository: ObservableObject {
             .eraseToAnyPublisher()
     }
     
-    func createPost(userId: Int, title: String, body: String) -> AnyPublisher<Post, RequestError>  {
+    func createPost(userId: Int, title: String, body: String) -> AnyPublisher<Post, RequestError> {
         let request = CreatePostRequest(userId: userId, title: title, body: body)
+        return networkService
+            .sendRequest(request)
+            .eraseToAnyPublisher()
+    }
+    
+    func deletePost(id: Int) -> AnyPublisher<Void, RequestError> {
+        let request = DeletePostRequest(id: id)
         return networkService
             .sendRequest(request)
             .eraseToAnyPublisher()

@@ -9,11 +9,9 @@ import SwiftUI
 
 struct CommentListView: View {
     @ObservedObject var viewModel: CommentListViewModel
-    private var repository: JsonPlaceholderWebRepository
     
     init(postId: Int, repository: JsonPlaceholderWebRepository) {
         self.viewModel = CommentListViewModel(postId: postId, repository: repository)
-        self.repository = repository
     }
     
     var body: some View {

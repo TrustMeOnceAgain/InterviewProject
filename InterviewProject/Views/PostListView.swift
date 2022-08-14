@@ -11,39 +11,24 @@ import CoreData
 struct PostListView: View {
     
     @ObservedObject var viewModel: PostListViewModel
-    private var repository: JsonPlaceholderWebRepository
+    private var webRepository: JsonPlaceholderWebRepository
     
-    init(repository: JsonPlaceholderWebRepository, dbRepository: JsonPlaceholderDBRepository) {
-        self.viewModel = PostListViewModel(repository: repository, dbRepository: dbRepository)
-        self.repository = repository
+    init(webRepository: JsonPlaceholderWebRepository, dbRepository: JsonPlaceholderDBRepository) {
+        self.viewModel = PostListViewModel(webRepository: webRepository, dbRepository: dbRepository)
+        self.webRepository = webRepository
     }
     
     var body: some View {
         contentView
             .navigationTitle("Posts")
-//            .toolbar(content: {
-//                Button("Add post") {
-//                    viewModel.addPost(userId: 1, title: "Some title", body: "So body so new!")
-//                }
-//            })
             .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button("Refresh") {
-                        viewModel.fetchData()
-                    }
-                }
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                        Toggle("Local data", isOn: $viewModel.usingLocalData)
-                    if !viewModel.usingLocalData {
-                        Button("Save") {
-                            viewModel.savePosts()
-                        }
-                    } else {
-                        Button("Delete all") {
-                            viewModel.deletePosts()
-                        }
-                    }
-                }
+                toolbarView
+            }
+            .alert(item: $viewModel.addedPost) { post in
+                Alert(title: Text("Added new post"),
+                      message: Text("Id: \(post.id)\nTitle: \(post.title)\nBody: \(post.body)"),
+                      dismissButton: .destructive(Text("Delete"),
+                                                  action: { viewModel.deleteWebPost(id: post.id) }))
             }
     }
 }
@@ -57,9 +42,11 @@ extension PostListView {
             if posts.isEmpty {
                 Text("There are no posts to show")
             } else {
-                List {
-                    ForEach(posts, id: \.id) { model in
-                        NavigationLink(destination: { CommentListView(postId: model.id, repository: repository) }) {
+                List(posts, id: \.id) { model in
+                    if viewModel.usingLocalData {
+                        Text(model.title)
+                    } else {
+                        NavigationLink(destination: { CommentListView(postId: model.id, repository: webRepository) }) {
                             Text(model.title)
                         }
                     }
@@ -80,15 +67,45 @@ extension PostListView {
             }
         }
     }
+    
+    @ToolbarContentBuilder
+    private var toolbarView: some ToolbarContent {
+        ToolbarItemGroup(placement: .navigationBarTrailing) {
+            Button("Refresh") {
+                viewModel.fetchData()
+            }
+            if !viewModel.usingLocalData {
+                Button("Add post") {
+                    viewModel.addPost(userId: 200, title: "New post", body: "New post body")
+                }
+            }
+        }
+        ToolbarItemGroup(placement: .navigationBarLeading) {
+                Toggle("Local", isOn: $viewModel.usingLocalData)
+            if !viewModel.usingLocalData {
+                Button("Save") {
+                    viewModel.saveToLocalPosts()
+                }
+            } else {
+                Button("Delete all") {
+                    viewModel.deleteLocalPosts()
+                }
+            }
+        }
+    }
 }
 
-//struct PostListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            ForEach(ColorScheme.allCases, id: \.hashValue) { colorScheme in
-////                PostListView(repository: JsonPlaceholderWebRepository(networkService: MockedNetworkService(mockedRequests: [])), viewContext: <#NSManagedObjectContext#>)
-//            }
-//        }
-//        .previewLayout(.device)
-//    }
-//}
+struct PostListView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            ForEach(ColorScheme.allCases, id: \.hashValue) { colorScheme in
+                NavigationView {
+                PostListView(webRepository: JsonPlaceholderWebRepository(networkService: MockedNetworkService(mockedRequests: [])), dbRepository: JsonPlaceholderDBRepository(persistenceService: PersistenceService.preview))
+                    .preferredColorScheme(colorScheme)
+                }
+            }
+            
+        }
+        .previewLayout(.device)
+    }
+}

@@ -26,12 +26,13 @@ class PostListViewModel: ObservableObject {
     }
     @Published private var localPosts: [Post]?
     @Published private var webPosts: [Post]?
-    private let repository: JsonPlaceholderWebRepository
+    private let webRepository: JsonPlaceholderWebRepository
     private let dbRepository: JsonPlaceholderDBRepository
     private var cancellable: Set<AnyCancellable> = []
+    @Published var addedPost: Post?
     
-    init(repository: JsonPlaceholderWebRepository, dbRepository: JsonPlaceholderDBRepository) {
-        self.repository = repository
+    init(webRepository: JsonPlaceholderWebRepository, dbRepository: JsonPlaceholderDBRepository) {
+        self.webRepository = webRepository
         self.dbRepository = dbRepository
         setupPosts()
     }
@@ -41,14 +42,16 @@ class PostListViewModel: ObservableObject {
     }
     
     func addPost(userId: Int, title: String, body: String) {
-        repository.createPost(userId: userId, title: title, body: body)
+        webRepository
+            .createPost(userId: userId, title: title, body: body)
+            .receive(on: RunLoop.main)
             .sink(
-                receiveCompletion: { print($0) },
-                receiveValue: { print("\($0.title), \($0.body)") }) // TODO: something better than just print
+                receiveCompletion: { print("\(#function): \($0)") },
+                receiveValue: { [weak self] in self?.addedPost = $0 })
             .store(in: &cancellable)
     }
     
-    func savePosts() {
+    func saveToLocalPosts() {
         guard !usingLocalData, let webPosts = self.webPosts else { return }
         dbRepository.storePosts(webPosts)
             .sink(
@@ -65,32 +68,44 @@ class PostListViewModel: ObservableObject {
 
     }
     
-    func deletePosts() {
+    func deleteLocalPosts() {
         guard usingLocalData else { return }
         dbRepository
             .deleteAllPosts()
             .sink(
-                receiveCompletion: { [weak self] completion in
-                    switch completion {
-                    case .finished:
-                        self?.localPosts = []
-                    case .failure(let error):
-                        print(error)
-                    }
+                receiveCompletion: { [weak self] in
+                    print("\(#function): \($0)")
+                    guard case .finished = $0 else { return }
+                    self?.localPosts = []
                 },
                 receiveValue: { _ in })
+            .store(in: &cancellable)
+    }
+    
+    func deleteWebPost(id: Int) {
+        guard !usingLocalData else { return }
+        webRepository
+            .deletePost(id: id)
+            .receive(on: RunLoop.main)
+            .sink(
+                receiveCompletion: { [weak self] in
+                    print("\(#function): \($0)")
+                    guard case .finished = $0 else { return }
+                    self?.addedPost = nil
+                },
+                receiveValue: { })
             .store(in: &cancellable)
     }
     
     private func getPosts() {
         dataStatus = .loading
         
-        let publisher = usingLocalData ? dbRepository.fetchPosts() : repository.getPosts()
+        let publisher = usingLocalData ? dbRepository.fetchPosts() : webRepository.getPosts()
         publisher
             .receive(on: RunLoop.main)
             .sink(
                 receiveCompletion: { [weak self] in
-                    print($0)
+                    print("\(#function): \($0)")
                     guard case .failure(let error) = $0 else { return }
                     self?.dataStatus = .error(error)
                 },

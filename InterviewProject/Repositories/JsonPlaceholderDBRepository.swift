@@ -11,15 +11,15 @@ import CoreData
 
 class JsonPlaceholderDBRepository {
     
-    let persistenceController: PersistenceController
+    let persistenceService: PersistenceService
     
-    init(persistenceController: PersistenceController) {
-        self.persistenceController = persistenceController
+    init(persistenceService: PersistenceService) {
+        self.persistenceService = persistenceService
     }
     
     func fetchPosts() -> AnyPublisher<[Post], RequestError> {
         let fetchRequest = PostCD.fetchRequest()
-        return persistenceController
+        return persistenceService
             .fetchData(fetchRequest)
             .map { $0.compactMap { Post(from: $0) } }
             .mapError { error -> RequestError in
@@ -31,14 +31,14 @@ class JsonPlaceholderDBRepository {
     
     func storePosts(_ posts: [Post]) -> AnyPublisher<Void, RequestError> {
         posts.forEach { post in
-            let postCD = PostCD(context: persistenceController.container.viewContext)
+            let postCD = PostCD(context: persistenceService.container.viewContext)
             postCD.id = Int32(post.id)
             postCD.userId = Int32(post.userId)
             postCD.title = post.title
             postCD.body = post.body
         }
         
-        return persistenceController
+        return persistenceService
             .storeData()
             .mapError { error in
                 guard let requestError = error as? RequestError else { return RequestError.localError }
@@ -48,7 +48,7 @@ class JsonPlaceholderDBRepository {
     }
     
     func deleteAllPosts() -> AnyPublisher<Void, RequestError> {
-        persistenceController
+        persistenceService
             .deleteAllData(for: .post)
             .mapError { error in
                 guard let requestError = error as? RequestError else { return RequestError.localError }

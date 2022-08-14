@@ -9,7 +9,7 @@ import Foundation
 
 struct MockedRequest {
     let request: Request
-    let response: Result<Data, RequestError>
+    let response: Result<Data?, RequestError>
 }
 
 extension MockedRequest: Equatable {

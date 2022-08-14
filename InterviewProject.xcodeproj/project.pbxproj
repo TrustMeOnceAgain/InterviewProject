@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		402D2F0E28A91DE800E10BE6 /* DeletePostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F0D28A91DE800E10BE6 /* DeletePostRequest.swift */; };
+		402D2F1028A92B3800E10BE6 /* DIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F0F28A92B3800E10BE6 /* DIManager.swift */; };
 		405049D328A69186000F5084 /* InterviewProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049D228A69186000F5084 /* InterviewProjectApp.swift */; };
 		405049D528A69186000F5084 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049D428A69186000F5084 /* ContentView.swift */; };
 		405049D728A69188000F5084 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405049D628A69188000F5084 /* Assets.xcassets */; };
 		405049DA28A69188000F5084 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405049D928A69188000F5084 /* Preview Assets.xcassets */; };
-		405049DC28A69188000F5084 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049DB28A69188000F5084 /* Persistence.swift */; };
+		405049DC28A69188000F5084 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049DB28A69188000F5084 /* PersistenceService.swift */; };
 		405049DF28A69188000F5084 /* InterviewProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 405049DD28A69188000F5084 /* InterviewProject.xcdatamodeld */; };
 		405049E928A69188000F5084 /* InterviewProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049E828A69188000F5084 /* InterviewProjectTests.swift */; };
 		405049F328A69189000F5084 /* InterviewProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049F228A69189000F5084 /* InterviewProjectUITests.swift */; };
@@ -27,7 +29,7 @@
 		40504A1528A697CA000F5084 /* GetCommentsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40504A1428A697CA000F5084 /* GetCommentsRequest.swift */; };
 		40504A1728A69938000F5084 /* CreatePostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40504A1628A69938000F5084 /* CreatePostRequest.swift */; };
 		408DE9CF28A8E54500FF019C /* JsonPlaceholderDBRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408DE9CE28A8E54500FF019C /* JsonPlaceholderDBRepository.swift */; };
-		40EEAE5128A69CB2000EE69E /* JsonPlaceholderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EEAE5028A69CB2000EE69E /* JsonPlaceholderRepository.swift */; };
+		40EEAE5128A69CB2000EE69E /* JsonPlaceholderWebRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EEAE5028A69CB2000EE69E /* JsonPlaceholderWebRepository.swift */; };
 		40EEAE5428A6A7C5000EE69E /* PostListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EEAE5328A6A7C5000EE69E /* PostListView.swift */; };
 		40EEAE5728A6A854000EE69E /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EEAE5628A6A854000EE69E /* PostListViewModel.swift */; };
 		40EEAE5928A6A89C000EE69E /* ViewDataStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EEAE5828A6A89C000EE69E /* ViewDataStatus.swift */; };
@@ -53,12 +55,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		402D2F0D28A91DE800E10BE6 /* DeletePostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePostRequest.swift; sourceTree = "<group>"; };
+		402D2F0F28A92B3800E10BE6 /* DIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIManager.swift; sourceTree = "<group>"; };
 		405049CF28A69186000F5084 /* InterviewProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterviewProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405049D228A69186000F5084 /* InterviewProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewProjectApp.swift; sourceTree = "<group>"; };
 		405049D428A69186000F5084 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		405049D628A69188000F5084 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		405049D928A69188000F5084 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		405049DB28A69188000F5084 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		405049DB28A69188000F5084 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		405049DE28A69188000F5084 /* InterviewProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InterviewProject.xcdatamodel; sourceTree = "<group>"; };
 		405049E428A69188000F5084 /* InterviewProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InterviewProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		405049E828A69188000F5084 /* InterviewProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewProjectTests.swift; sourceTree = "<group>"; };
@@ -76,7 +80,7 @@
 		40504A1428A697CA000F5084 /* GetCommentsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCommentsRequest.swift; sourceTree = "<group>"; };
 		40504A1628A69938000F5084 /* CreatePostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostRequest.swift; sourceTree = "<group>"; };
 		408DE9CE28A8E54500FF019C /* JsonPlaceholderDBRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPlaceholderDBRepository.swift; sourceTree = "<group>"; };
-		40EEAE5028A69CB2000EE69E /* JsonPlaceholderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPlaceholderRepository.swift; sourceTree = "<group>"; };
+		40EEAE5028A69CB2000EE69E /* JsonPlaceholderWebRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPlaceholderWebRepository.swift; sourceTree = "<group>"; };
 		40EEAE5328A6A7C5000EE69E /* PostListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListView.swift; sourceTree = "<group>"; };
 		40EEAE5628A6A854000EE69E /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
 		40EEAE5828A6A89C000EE69E /* ViewDataStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDataStatus.swift; sourceTree = "<group>"; };
@@ -109,6 +113,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		402D2F1128A92E0200E10BE6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				40504A0628A69498000F5084 /* NetworkingService.swift */,
+				405049DB28A69188000F5084 /* PersistenceService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		405049C628A69186000F5084 = {
 			isa = PBXGroup;
 			children = (
@@ -132,15 +145,16 @@
 		405049D128A69186000F5084 /* InterviewProject */ = {
 			isa = PBXGroup;
 			children = (
-				40EEAE5528A6A7C9000EE69E /* ViewModels */,
-				40EEAE5228A6A7B5000EE69E /* Views */,
-				40504A0E28A696B3000F5084 /* Models */,
 				40EEAE4F28A69CA1000EE69E /* Repositories */,
+				402D2F1128A92E0200E10BE6 /* Services */,
 				40504A0128A693B7000F5084 /* Networking */,
+				40504A0E28A696B3000F5084 /* Models */,
+				40EEAE5228A6A7B5000EE69E /* Views */,
+				40EEAE5528A6A7C9000EE69E /* ViewModels */,
+				402D2F0F28A92B3800E10BE6 /* DIManager.swift */,
 				405049D228A69186000F5084 /* InterviewProjectApp.swift */,
 				405049D428A69186000F5084 /* ContentView.swift */,
 				405049D628A69188000F5084 /* Assets.xcassets */,
-				405049DB28A69188000F5084 /* Persistence.swift */,
 				405049DD28A69188000F5084 /* InterviewProject.xcdatamodeld */,
 				405049D828A69188000F5084 /* Preview Content */,
 			);
@@ -180,7 +194,6 @@
 				40504A0228A6941F000F5084 /* Request.swift */,
 				40504A0828A694A8000F5084 /* RequestError.swift */,
 				40504A0A28A694FC000F5084 /* MockedRequest.swift */,
-				40504A0628A69498000F5084 /* NetworkingService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -200,6 +213,7 @@
 				40504A1128A697A0000F5084 /* GetPostsRequest.swift */,
 				40504A1428A697CA000F5084 /* GetCommentsRequest.swift */,
 				40504A1628A69938000F5084 /* CreatePostRequest.swift */,
+				402D2F0D28A91DE800E10BE6 /* DeletePostRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -207,7 +221,7 @@
 		40EEAE4F28A69CA1000EE69E /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				40EEAE5028A69CB2000EE69E /* JsonPlaceholderRepository.swift */,
+				40EEAE5028A69CB2000EE69E /* JsonPlaceholderWebRepository.swift */,
 				408DE9CE28A8E54500FF019C /* JsonPlaceholderDBRepository.swift */,
 			);
 			path = Repositories;
@@ -362,15 +376,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				402D2F1028A92B3800E10BE6 /* DIManager.swift in Sources */,
+				402D2F0E28A91DE800E10BE6 /* DeletePostRequest.swift in Sources */,
 				40EEAE5928A6A89C000EE69E /* ViewDataStatus.swift in Sources */,
 				40504A1528A697CA000F5084 /* GetCommentsRequest.swift in Sources */,
 				408DE9CF28A8E54500FF019C /* JsonPlaceholderDBRepository.swift in Sources */,
 				40504A0928A694A8000F5084 /* RequestError.swift in Sources */,
-				405049DC28A69188000F5084 /* Persistence.swift in Sources */,
+				405049DC28A69188000F5084 /* PersistenceService.swift in Sources */,
 				40504A1728A69938000F5084 /* CreatePostRequest.swift in Sources */,
 				40504A0B28A694FC000F5084 /* MockedRequest.swift in Sources */,
 				405049DF28A69188000F5084 /* InterviewProject.xcdatamodeld in Sources */,
-				40EEAE5128A69CB2000EE69E /* JsonPlaceholderRepository.swift in Sources */,
+				40EEAE5128A69CB2000EE69E /* JsonPlaceholderWebRepository.swift in Sources */,
 				40504A0328A6941F000F5084 /* Request.swift in Sources */,
 				40504A0528A69439000F5084 /* Host.swift in Sources */,
 				40EEAE5D28A6AE4D000EE69E /* CommentListViewModel.swift in Sources */,
