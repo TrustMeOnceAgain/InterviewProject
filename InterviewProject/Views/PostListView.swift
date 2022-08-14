@@ -13,8 +13,8 @@ struct PostListView: View {
     @ObservedObject var viewModel: PostListViewModel
     private var repository: JsonPlaceholderWebRepository
     
-    init(repository: JsonPlaceholderWebRepository, viewContext: NSManagedObjectContext) {
-        self.viewModel = PostListViewModel(repository: repository, viewContext: viewContext)
+    init(repository: JsonPlaceholderWebRepository, dbRepository: JsonPlaceholderDBRepository) {
+        self.viewModel = PostListViewModel(repository: repository, dbRepository: dbRepository)
         self.repository = repository
     }
     
@@ -28,17 +28,19 @@ struct PostListView: View {
 //            })
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    EditButton()
+                    Button("Refresh") {
+                        viewModel.fetchData()
+                    }
                 }
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                         Toggle("Local data", isOn: $viewModel.usingLocalData)
                     if !viewModel.usingLocalData {
                         Button("Save") {
-                            viewModel.saveData()
+                            viewModel.savePosts()
                         }
                     } else {
                         Button("Delete all") {
-                            viewModel.removeLocalData()
+                            viewModel.deletePosts()
                         }
                     }
                 }
@@ -52,10 +54,14 @@ extension PostListView {
         
         switch viewModel.dataStatus {
         case .loaded(data: let posts):
-            List {
-                ForEach(posts, id: \.id) { model in
-                    NavigationLink(destination: { CommentListView(postId: model.id, repository: repository) }) {
-                        Text(model.title)
+            if posts.isEmpty {
+                Text("There are no posts to show")
+            } else {
+                List {
+                    ForEach(posts, id: \.id) { model in
+                        NavigationLink(destination: { CommentListView(postId: model.id, repository: repository) }) {
+                            Text(model.title)
+                        }
                     }
                 }
             }
@@ -68,9 +74,9 @@ extension PostListView {
         case .notLoaded:
             VStack {
                 Text("Not loaded yet")
-                Button("Fetch data") {
-                    viewModel.fetchData()
-                }
+            }
+            .onAppear {
+                viewModel.fetchData()
             }
         }
     }

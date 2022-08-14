@@ -55,10 +55,8 @@ struct PersistenceController {
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
     
-    func fetchData<T: NSManagedObject>() -> AnyPublisher<[T], Error> {
+    func fetchData<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>) -> AnyPublisher<[T], Error> {
         return Future<[T], Error> { [weak container] promise in
-            guard let entityName: String = T.entity().name else { promise(.failure(RequestError.parsingFailure)); return } // TODO: change error
-            let fetchRequest: NSFetchRequest<T> = NSFetchRequest(entityName: entityName)
             do {
                 try container?.viewContext.performAndWait {
                     let result = try fetchRequest.execute()

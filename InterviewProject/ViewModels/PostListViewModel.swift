@@ -12,7 +12,6 @@ import CoreData
 
 class PostListViewModel: ObservableObject {
     
-    private var viewContext: NSManagedObjectContext
     @Published var dataStatus: ViewDataStatus<[Post]> = .notLoaded
     @Published var usingLocalData: Bool = true
     
@@ -31,22 +30,14 @@ class PostListViewModel: ObservableObject {
     private let dbRepository: JsonPlaceholderDBRepository
     private var cancellable: Set<AnyCancellable> = []
     
-    init(repository: JsonPlaceholderWebRepository, dbRepository: JsonPlaceholderDBRepository, viewContext: NSManagedObjectContext) {
+    init(repository: JsonPlaceholderWebRepository, dbRepository: JsonPlaceholderDBRepository) {
         self.repository = repository
         self.dbRepository = dbRepository
-        self.viewContext = viewContext
         setupPosts()
-        fetchData()
     }
     
     func fetchData() {
-        if usingLocalData {
-            Task {
-                await fetchPostCD()
-            }
-        } else {
-            getPosts()
-        }
+        getPosts()
     }
     
     func addPost(userId: Int, title: String, body: String) {
@@ -57,31 +48,38 @@ class PostListViewModel: ObservableObject {
             .store(in: &cancellable)
     }
     
-    func saveData() {
-        removeLocalData()
-        webPosts?.forEach({ post in
-            let postCD = PostCD(context: viewContext)
-            postCD.id = Int32(post.id)
-            postCD.userId = Int32(post.userId)
-            postCD.title = post.title
-            postCD.body = post.body
-        })
-        let result = try? viewContext.save()
-        Task {
-            await fetchPostCD()
-        }
-        print(result)
+    func savePosts() {
+        guard !usingLocalData, let webPosts = self.webPosts else { return }
+        dbRepository.storePosts(webPosts)
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    switch completion {
+                    case .finished:
+                        self?.localPosts = webPosts
+                    case .failure(let error):
+                        print(error)
+                    }
+                },
+                receiveValue: { _ in })
+            .store(in: &cancellable)
+
     }
     
-    func removeLocalData() {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "PostCD")
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        let result = try? viewContext.execute(deleteRequest)
-        Task {
-            await fetchPostCD()
-        }
-        print(result)
+    func deletePosts() {
+        guard usingLocalData else { return }
+        dbRepository
+            .deleteAllPosts()
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    switch completion {
+                    case .finished:
+                        self?.localPosts = []
+                    case .failure(let error):
+                        print(error)
+                    }
+                },
+                receiveValue: { _ in })
+            .store(in: &cancellable)
     }
     
     private func getPosts() {
@@ -97,21 +95,14 @@ class PostListViewModel: ObservableObject {
                     self?.dataStatus = .error(error)
                 },
                 receiveValue: { [weak self] in
-                    self?.webPosts = $0
+                    if self?.usingLocalData == true {
+                        self?.localPosts = $0
+                    } else {
+                        self?.webPosts = $0
+                    }
                 })
             .store(in: &cancellable)
         
-    }
-    
-    private func fetchPostCD() async { // Move somewhere else
-        let fetchRequest: NSFetchRequest<PostCD> = PostCD.fetchRequest()
-
-        try? await viewContext.perform { [weak self] in
-            let result = try fetchRequest.execute()
-
-            let posts = result.compactMap { Post(from: $0) }
-            self?.localPosts = posts
-        }
     }
     
     private func setupPosts() {

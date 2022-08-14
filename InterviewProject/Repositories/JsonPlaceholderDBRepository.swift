@@ -18,14 +18,11 @@ class JsonPlaceholderDBRepository {
     }
     
     func fetchPosts() -> AnyPublisher<[Post], RequestError> {
-        persistenceController
-            .fetchData()
-            .tryMap({ (nsManagedObjects: [NSManagedObject]) -> [Post] in
-                guard let postsCD = nsManagedObjects as? [PostCD] else { throw RequestError.parsingFailure }
-                let posts = postsCD.compactMap { Post(from: $0) }
-                return posts
-            })
-            .mapError { error in
+        let fetchRequest = PostCD.fetchRequest()
+        return persistenceController
+            .fetchData(fetchRequest)
+            .map { $0.compactMap { Post(from: $0) } }
+            .mapError { error -> RequestError in
                 guard let requestError = error as? RequestError else { return RequestError.localError }
                 return requestError
             }
