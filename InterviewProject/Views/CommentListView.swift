@@ -28,14 +28,18 @@ extension CommentListView {
     private var contentView: some View {
         switch viewModel.dataStatus {
         case .loaded(data: let comments):
-            List {
-                ForEach(comments, id: \.id) { model in
-                    createCellView(from: model)
+            if comments.isEmpty {
+                Text("There are no comments to show")
+            } else {
+                List {
+                    ForEach(comments, id: \.id) { model in
+                        createCellView(from: model)
+                    }
+                    .onDelete(perform: { indexes in
+                        guard let index = indexes.first else { return }
+                        viewModel.deleteComment(index: index)
+                    })
                 }
-                .onDelete(perform: { indexes in
-                    guard let index = indexes.first else { return }
-                    viewModel.deleteComment(index: index)
-                })
             }
         case .loading:
             ProgressView()

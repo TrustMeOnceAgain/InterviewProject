@@ -48,7 +48,16 @@ class PostListViewModel: ObservableObject {
             .receive(on: RunLoop.main)
             .sink(
                 receiveCompletion: { print("\(#function): \($0)") },
-                receiveValue: { [weak self] in self?.addedPost = $0 })
+                receiveValue: { [weak self] in
+//                    self?.addedPost = $0
+                    // Workaround for Post request always returning the same data
+                    var id = $0.id
+                    while self?.webPosts?.contains(where: { $0.id == id }) == true {
+                        id += 1
+                    }
+                    let post = Post(id: id, userId: $0.userId, title: $0.title, body: $0.body)
+                    self?.webPosts?.append(post)
+                })
             .store(in: &cancellable)
     }
     

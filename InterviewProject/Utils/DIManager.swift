@@ -10,6 +10,7 @@ import Foundation
 class DIManager {
     static var shared: DIManager = DIManager()
     
+    let appEnvironment: AppEnv
     let networkService: NetworkingService
     let persistentService: PersistenceService
     
@@ -17,8 +18,11 @@ class DIManager {
     let jsonPlaceholderWebRepository: JsonPlaceholderWebRepository
     
     private init() {
-        self.networkService = DIManager.createNetworkingService(appEnv: .realData) // change to use mocked data
-        self.persistentService = PersistenceService()
+        let appEnv: AppEnv = .realData // change to use mocked data, could be extended to use e.g. defaults
+        
+        self.appEnvironment = appEnv
+        self.networkService = DIManager.createNetworkingService(appEnv: appEnv)
+        self.persistentService = PersistenceService(inMemory: appEnv != .realData)
         
         self.jsonPlaceholderWebRepository = JsonPlaceholderWebRepository(networkService: networkService)
         self.jsonPlaceholderDBRepository = JsonPlaceholderDBRepository(persistenceService: persistentService)

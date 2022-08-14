@@ -17,12 +17,20 @@
 		402D2F1F28A9480A00E10BE6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F1E28A9480A00E10BE6 /* Colors.xcassets */; };
 		402D2F2128A9494B00E10BE6 /* DeleteCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F2028A9494B00E10BE6 /* DeleteCommentRequest.swift */; };
 		402D2F2628A94D6A00E10BE6 /* Collections+safeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F2528A94D6A00E10BE6 /* Collections+safeSubscript.swift */; };
-		402D2F2828A962DA00E10BE6 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F2728A962DA00E10BE6 /* JsonLoader.swift */; };
 		402D2F2B28A963C500E10BE6 /* JsonPlaceholderWebRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F2A28A963C500E10BE6 /* JsonPlaceholderWebRepositoryTests.swift */; };
 		402D2F2D28A9644300E10BE6 /* GetPostsRequestMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F2C28A9644300E10BE6 /* GetPostsRequestMock.json */; };
 		402D2F2F28A9677900E10BE6 /* GetCommentsRequestMock_PostId1.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F2E28A9677900E10BE6 /* GetCommentsRequestMock_PostId1.json */; };
 		402D2F3128A9689000E10BE6 /* GetCommentsRequestMock_PostId2.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F3028A9689000E10BE6 /* GetCommentsRequestMock_PostId2.json */; };
 		402D2F3328A9713200E10BE6 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F3228A9713200E10BE6 /* NetworkServiceTests.swift */; };
+		402D2F3528A97A4D00E10BE6 /* MockedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F3428A97A4D00E10BE6 /* MockedData.swift */; };
+		402D2F3628A97A9800E10BE6 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F2728A962DA00E10BE6 /* JsonLoader.swift */; };
+		402D2F3728A97AA600E10BE6 /* GetPostsRequestMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F2C28A9644300E10BE6 /* GetPostsRequestMock.json */; };
+		402D2F3828A97AA800E10BE6 /* GetCommentsRequestMock_PostId1.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F2E28A9677900E10BE6 /* GetCommentsRequestMock_PostId1.json */; };
+		402D2F3928A97AAB00E10BE6 /* GetCommentsRequestMock_PostId2.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F3028A9689000E10BE6 /* GetCommentsRequestMock_PostId2.json */; };
+		402D2F3B28A97B5000E10BE6 /* EmptyListMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F3A28A97B5000E10BE6 /* EmptyListMock.json */; };
+		402D2F3C28A97B5000E10BE6 /* EmptyListMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F3A28A97B5000E10BE6 /* EmptyListMock.json */; };
+		402D2F3E28A97CE900E10BE6 /* CreatePostRequestMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F3D28A97CE900E10BE6 /* CreatePostRequestMock.json */; };
+		402D2F3F28A97CE900E10BE6 /* CreatePostRequestMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F3D28A97CE900E10BE6 /* CreatePostRequestMock.json */; };
 		405049D328A69186000F5084 /* InterviewProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049D228A69186000F5084 /* InterviewProjectApp.swift */; };
 		405049D728A69188000F5084 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405049D628A69188000F5084 /* Assets.xcassets */; };
 		405049DA28A69188000F5084 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405049D928A69188000F5084 /* Preview Assets.xcassets */; };
@@ -84,6 +92,9 @@
 		402D2F2E28A9677900E10BE6 /* GetCommentsRequestMock_PostId1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetCommentsRequestMock_PostId1.json; sourceTree = "<group>"; };
 		402D2F3028A9689000E10BE6 /* GetCommentsRequestMock_PostId2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetCommentsRequestMock_PostId2.json; sourceTree = "<group>"; };
 		402D2F3228A9713200E10BE6 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
+		402D2F3428A97A4D00E10BE6 /* MockedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedData.swift; sourceTree = "<group>"; };
+		402D2F3A28A97B5000E10BE6 /* EmptyListMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = EmptyListMock.json; sourceTree = "<group>"; };
+		402D2F3D28A97CE900E10BE6 /* CreatePostRequestMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CreatePostRequestMock.json; sourceTree = "<group>"; };
 		405049CF28A69186000F5084 /* InterviewProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterviewProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405049D228A69186000F5084 /* InterviewProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewProjectApp.swift; sourceTree = "<group>"; };
 		405049D628A69188000F5084 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -154,6 +165,8 @@
 				402D2F2428A94D5300E10BE6 /* Extensions */,
 				402D2F0F28A92B3800E10BE6 /* DIManager.swift */,
 				402D2F1A28A930E800E10BE6 /* ColorStyle.swift */,
+				402D2F2728A962DA00E10BE6 /* JsonLoader.swift */,
+				402D2F3428A97A4D00E10BE6 /* MockedData.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -201,6 +214,8 @@
 				402D2F2C28A9644300E10BE6 /* GetPostsRequestMock.json */,
 				402D2F2E28A9677900E10BE6 /* GetCommentsRequestMock_PostId1.json */,
 				402D2F3028A9689000E10BE6 /* GetCommentsRequestMock_PostId2.json */,
+				402D2F3A28A97B5000E10BE6 /* EmptyListMock.json */,
+				402D2F3D28A97CE900E10BE6 /* CreatePostRequestMock.json */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -247,7 +262,6 @@
 			children = (
 				402D2F2928A963AD00E10BE6 /* Mocks */,
 				405049E828A69188000F5084 /* InterviewProjectTests.swift */,
-				402D2F2728A962DA00E10BE6 /* JsonLoader.swift */,
 				402D2F2A28A963C500E10BE6 /* JsonPlaceholderWebRepositoryTests.swift */,
 				402D2F3228A9713200E10BE6 /* NetworkServiceTests.swift */,
 			);
@@ -429,9 +443,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				402D2F3728A97AA600E10BE6 /* GetPostsRequestMock.json in Resources */,
 				402D2F1F28A9480A00E10BE6 /* Colors.xcassets in Resources */,
+				402D2F3828A97AA800E10BE6 /* GetCommentsRequestMock_PostId1.json in Resources */,
 				405049DA28A69188000F5084 /* Preview Assets.xcassets in Resources */,
+				402D2F3928A97AAB00E10BE6 /* GetCommentsRequestMock_PostId2.json in Resources */,
 				405049D728A69188000F5084 /* Assets.xcassets in Resources */,
+				402D2F3B28A97B5000E10BE6 /* EmptyListMock.json in Resources */,
+				402D2F3E28A97CE900E10BE6 /* CreatePostRequestMock.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +461,8 @@
 				402D2F2F28A9677900E10BE6 /* GetCommentsRequestMock_PostId1.json in Resources */,
 				402D2F3128A9689000E10BE6 /* GetCommentsRequestMock_PostId2.json in Resources */,
 				402D2F2D28A9644300E10BE6 /* GetPostsRequestMock.json in Resources */,
+				402D2F3F28A97CE900E10BE6 /* CreatePostRequestMock.json in Resources */,
+				402D2F3C28A97B5000E10BE6 /* EmptyListMock.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +500,7 @@
 				40504A0528A69439000F5084 /* Host.swift in Sources */,
 				40EEAE5D28A6AE4D000EE69E /* CommentListViewModel.swift in Sources */,
 				40EEAE5728A6A854000EE69E /* PostListViewModel.swift in Sources */,
+				402D2F3528A97A4D00E10BE6 /* MockedData.swift in Sources */,
 				40EEAE5F28A6AEED000EE69E /* CommentListView.swift in Sources */,
 				40EEAE5428A6A7C5000EE69E /* PostListView.swift in Sources */,
 				40504A0728A69498000F5084 /* NetworkingService.swift in Sources */,
@@ -487,6 +509,7 @@
 				402D2F1728A9305200E10BE6 /* CellView.swift in Sources */,
 				40504A1028A696CB000F5084 /* Comment.swift in Sources */,
 				40504A1228A697A0000F5084 /* GetPostsRequest.swift in Sources */,
+				402D2F3628A97A9800E10BE6 /* JsonLoader.swift in Sources */,
 				40504A0D28A696AE000F5084 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,7 +519,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				402D2F2B28A963C500E10BE6 /* JsonPlaceholderWebRepositoryTests.swift in Sources */,
-				402D2F2828A962DA00E10BE6 /* JsonLoader.swift in Sources */,
 				402D2F3328A9713200E10BE6 /* NetworkServiceTests.swift in Sources */,
 				405049E928A69188000F5084 /* InterviewProjectTests.swift in Sources */,
 			);

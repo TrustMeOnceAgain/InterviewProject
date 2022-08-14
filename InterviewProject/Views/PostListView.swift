@@ -24,7 +24,7 @@ struct PostListView: View {
             .toolbar {
                 toolbarView
             }
-            .alert(item: $viewModel.addedPost) { post in
+            .alert(item: $viewModel.addedPost) { post in // TODO: remove or use it
                 Alert(title: Text("Added new post"),
                       message: Text("Id: \(post.id)\nTitle: \(post.title)\nBody: \(post.body)"),
                       dismissButton: .destructive(Text("Delete"),
@@ -74,6 +74,11 @@ extension PostListView {
             Button(action: { viewModel.fetchData() }, label: {
                 Image(systemName: "arrow.triangle.2.circlepath.circle")
             })
+            if !viewModel.usingLocalData {
+                Button(action: { viewModel.addPost(userId: 1, title: "Title", body: "Body") }, label: {
+                    Image(systemName: "plus.circle.fill")
+                })
+            }
         }
         ToolbarItemGroup(placement: .navigationBarLeading) {
             Button(action: { viewModel.usingLocalData.toggle() }, label: {

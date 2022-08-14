@@ -70,7 +70,7 @@ class MockedNetworkService: NetworkingService {
     
     var mockedRequests: [MockedRequest]
     
-    init(mockedRequests: [MockedRequest] = []) { // Add mocked data
+    init(mockedRequests: [MockedRequest] = MockedData.defaultMockedRequests) {
         self.mockedRequests = mockedRequests
     }
     
