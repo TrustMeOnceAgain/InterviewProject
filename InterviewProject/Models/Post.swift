@@ -26,3 +26,12 @@ struct Post: Decodable, Identifiable {
         self.body = body
     }
 }
+
+extension Post: Comparable {
+    static func < (lhs: Post, rhs: Post) -> Bool {
+        guard lhs.id == rhs.id else { return lhs.id < rhs.id }
+        guard lhs.title == rhs.title else { return lhs.title < rhs.title }
+        guard lhs.body == rhs.body else { return lhs.body < rhs.body }
+        return lhs.userId < rhs.userId
+    }
+}

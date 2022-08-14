@@ -74,23 +74,30 @@ extension PostListView {
             Button("Refresh") {
                 viewModel.fetchData()
             }
-            if !viewModel.usingLocalData {
-                Button("Add post") {
-                    viewModel.addPost(userId: 200, title: "New post", body: "New post body")
-                }
-            }
         }
         ToolbarItemGroup(placement: .navigationBarLeading) {
-                Toggle("Local", isOn: $viewModel.usingLocalData)
+            Button(action: { viewModel.usingLocalData.toggle() }, label: {
+                Text(viewModel.usingLocalData ? "Local" : "Server")
+                Image(systemName: viewModel.usingLocalData ? "internaldrive.fill" : "cloud.fill")
+                
+            })
             if !viewModel.usingLocalData {
-                Button("Save") {
-                    viewModel.saveToLocalPosts()
-                }
+                Button(action: { viewModel.saveToLocalPosts() }, label: {
+                    Text("Save")
+                    Image(systemName: "plus.rectangle.on.folder.fill")
+                })
             } else {
-                Button("Delete all") {
-                    viewModel.deleteLocalPosts()
-                }
+                Button(action: { viewModel.deleteLocalPosts() }, label: {
+                    Text("Delete")
+                    Image(systemName: "folder.fill.badge.minus")
+                })
             }
+        }
+        ToolbarItemGroup(placement: .bottomBar) {
+            Button(action: { viewModel.sortedAscending.toggle() }, label: {
+                Text("Sort")
+                Image(systemName: viewModel.sortedAscending ? "arrow.up.arrow.down.square.fill" : "arrow.up.arrow.down.square")
+            })
         }
     }
     

@@ -14,6 +14,8 @@ class PostListViewModel: ObservableObject {
     
     @Published var dataStatus: ViewDataStatus<[Post]> = .notLoaded
     @Published var usingLocalData: Bool = true
+    @Published var addedPost: Post?
+    @Published var sortedAscending: Bool = true
     
     @Published private var posts: [Post]? {
         didSet {
@@ -29,7 +31,6 @@ class PostListViewModel: ObservableObject {
     private let webRepository: JsonPlaceholderWebRepository
     private let dbRepository: JsonPlaceholderDBRepository
     private var cancellable: Set<AnyCancellable> = []
-    @Published var addedPost: Post?
     
     init(webRepository: JsonPlaceholderWebRepository, dbRepository: JsonPlaceholderDBRepository) {
         self.webRepository = webRepository
@@ -122,10 +123,10 @@ class PostListViewModel: ObservableObject {
     
     private func setupPosts() {
         Publishers
-            .CombineLatest3($webPosts, $localPosts, $usingLocalData)
+            .CombineLatest4($webPosts, $localPosts, $usingLocalData, $sortedAscending)
             .receive(on: RunLoop.main)
-            .sink(receiveValue: { [weak self] webPosts, localPosts, usingLocalData in
-                self?.posts = usingLocalData ? localPosts : webPosts
+            .sink(receiveValue: { [weak self] webPosts, localPosts, usingLocalData, sortedAscending in
+                self?.posts = (usingLocalData ? localPosts : webPosts)?.sorted(by: sortedAscending ? (<) : (>) )
             })
             .store(in: &cancellable)
     }
