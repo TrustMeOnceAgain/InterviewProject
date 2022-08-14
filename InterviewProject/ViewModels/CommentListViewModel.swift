@@ -14,10 +14,10 @@ class CommentListViewModel: ObservableObject {
     
     @Published private var comments: [Comment]?
     private let postId: Int
-    private let repository: JsonPlaceholderRepository
+    private let repository: JsonPlaceholderWebRepository
     private var cancellable: Set<AnyCancellable> = []
     
-    init(postId: Int, repository: JsonPlaceholderRepository) {
+    init(postId: Int, repository: JsonPlaceholderWebRepository) {
         self.repository = repository
         self.postId = postId
     }

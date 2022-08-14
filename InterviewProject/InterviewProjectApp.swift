@@ -14,8 +14,9 @@ struct InterviewProjectApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                PostListView(repository: JsonPlaceholderRepository(networkService: RealNetworkService()))
+                PostListView(repository: JsonPlaceholderWebRepository(networkService: RealNetworkService()), viewContext: persistenceController.container.viewContext)
             }
+            .environment(\.managedObjectContext, persistenceController.container.viewContext)
             .navigationViewStyle(.stack)
             
                 

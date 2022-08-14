@@ -1,5 +1,5 @@
 //
-//  JsonPlaceholderRepository.swift
+//  JsonPlaceholderWebRepository.swift
 //  InterviewProject
 //
 //  Created by Filip Cybuch on 12/08/2022.
@@ -7,7 +7,7 @@
 
 import Combine
 
-class JsonPlaceholderRepository: ObservableObject {
+class JsonPlaceholderWebRepository: ObservableObject {
     
     let networkService: NetworkingService
     

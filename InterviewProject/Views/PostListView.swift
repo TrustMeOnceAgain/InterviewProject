@@ -6,36 +6,57 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct PostListView: View {
     
     @ObservedObject var viewModel: PostListViewModel
-    private var repository: JsonPlaceholderRepository
+    private var repository: JsonPlaceholderWebRepository
     
-    init(repository: JsonPlaceholderRepository) {
-        self.viewModel = PostListViewModel(repository: repository)
+    init(repository: JsonPlaceholderWebRepository, viewContext: NSManagedObjectContext) {
+        self.viewModel = PostListViewModel(repository: repository, viewContext: viewContext)
         self.repository = repository
     }
     
     var body: some View {
         contentView
             .navigationTitle("Posts")
-            .toolbar(content: {
-                Button("Add post") {
-                    viewModel.addPost(userId: 1, title: "Some title", body: "So body so new!")
+//            .toolbar(content: {
+//                Button("Add post") {
+//                    viewModel.addPost(userId: 1, title: "Some title", body: "So body so new!")
+//                }
+//            })
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    EditButton()
                 }
-            })
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Toggle("Local data", isOn: $viewModel.usingLocalData)
+                    if !viewModel.usingLocalData {
+                        Button("Save") {
+                            viewModel.saveData()
+                        }
+                    } else {
+                        Button("Delete all") {
+                            viewModel.removeLocalData()
+                        }
+                    }
+                }
+            }
     }
 }
 
 extension PostListView {
     @ViewBuilder
     private var contentView: some View {
+        
         switch viewModel.dataStatus {
         case .loaded(data: let posts):
-            List(posts, id: \.id) { model in
-                NavigationLink(destination: { CommentListView(postId: model.id, repository: repository) }) {
-                    Text(model.title)
+            List {
+                ForEach(posts, id: \.id) { model in
+                    NavigationLink(destination: { CommentListView(postId: model.id, repository: repository) }) {
+                        Text(model.title)
+                    }
                 }
             }
         case .loading:
@@ -45,21 +66,23 @@ extension PostListView {
         case .error(let error):
             Text("Error: \(error.localizedDescription)")
         case .notLoaded:
-            Text("Not loaded yet")
-                .onAppear {
+            VStack {
+                Text("Not loaded yet")
+                Button("Fetch data") {
                     viewModel.fetchData()
                 }
+            }
         }
     }
 }
 
-struct PostListView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ForEach(ColorScheme.allCases, id: \.hashValue) { colorScheme in
-                PostListView(repository: JsonPlaceholderRepository(networkService: MockedNetworkService(mockedRequests: [])))
-            }
-        }
-        .previewLayout(.device)
-    }
-}
+//struct PostListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            ForEach(ColorScheme.allCases, id: \.hashValue) { colorScheme in
+////                PostListView(repository: JsonPlaceholderWebRepository(networkService: MockedNetworkService(mockedRequests: [])), viewContext: <#NSManagedObjectContext#>)
+//            }
+//        }
+//        .previewLayout(.device)
+//    }
+//}

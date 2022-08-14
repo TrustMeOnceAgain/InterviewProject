@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import Combine
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -52,5 +53,58 @@ struct PersistenceController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+    }
+    
+    func fetchData<T: NSManagedObject>() -> AnyPublisher<[T], Error> {
+        return Future<[T], Error> { [weak container] promise in
+            guard let entityName: String = T.entity().name else { promise(.failure(RequestError.parsingFailure)); return } // TODO: change error
+            let fetchRequest: NSFetchRequest<T> = NSFetchRequest(entityName: entityName)
+            do {
+                try container?.viewContext.performAndWait {
+                    let result = try fetchRequest.execute()
+                    promise(.success(result))
+                }
+            } catch let error {
+                promise(.failure(error))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func storeData() -> AnyPublisher<Void, Error> {
+        Future<Void, Error> { [weak container] promise in
+            do {
+                try container?.viewContext.save()
+                promise(.success(()))
+            } catch let error {
+                promise(.failure(error))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func deleteAllData(for entity: Entity) -> AnyPublisher<Void, Error> {
+        Future<Void, Error> { [weak container] promise in
+            let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entity.name)
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            do {
+                try container?.viewContext.execute(deleteRequest)
+                promise(.success(()))
+            } catch let error {
+                promise(.failure(error))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    enum Entity {
+        case post
+        
+        var name: String {
+            switch self {
+            case .post:
+                return "PostCD"
+            }
+        }
     }
 }
