@@ -53,7 +53,7 @@ class PostListViewModel: ObservableObject {
     }
     
     func saveToLocalPosts() {
-        guard !usingLocalData, let webPosts = self.webPosts else { return }
+        guard !usingLocalData, let webPosts = webPosts else { return }
         dbRepository.storePosts(webPosts)
             .sink(
                 receiveCompletion: { [weak self] completion in

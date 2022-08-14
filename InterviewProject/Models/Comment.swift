@@ -10,6 +10,14 @@ import Foundation
 struct Comment: Decodable {
     let id, postId: Int
     let name, email, body: String
+    
+    init(id: Int, postId: Int, name: String, email: String, body: String) {
+        self.id = id
+        self.postId = postId
+        self.name = name
+        self.email = email
+        self.body = body
+    }
 }
 
 extension Comment: Comparable {

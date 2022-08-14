@@ -17,6 +17,11 @@
 		402D2F1F28A9480A00E10BE6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F1E28A9480A00E10BE6 /* Colors.xcassets */; };
 		402D2F2128A9494B00E10BE6 /* DeleteCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F2028A9494B00E10BE6 /* DeleteCommentRequest.swift */; };
 		402D2F2628A94D6A00E10BE6 /* Collections+safeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F2528A94D6A00E10BE6 /* Collections+safeSubscript.swift */; };
+		402D2F2828A962DA00E10BE6 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F2728A962DA00E10BE6 /* JsonLoader.swift */; };
+		402D2F2B28A963C500E10BE6 /* JsonPlaceholderWebRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F2A28A963C500E10BE6 /* JsonPlaceholderWebRepositoryTests.swift */; };
+		402D2F2D28A9644300E10BE6 /* GetPostsRequestMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F2C28A9644300E10BE6 /* GetPostsRequestMock.json */; };
+		402D2F2F28A9677900E10BE6 /* GetCommentsRequestMock_PostId1.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F2E28A9677900E10BE6 /* GetCommentsRequestMock_PostId1.json */; };
+		402D2F3128A9689000E10BE6 /* GetCommentsRequestMock_PostId2.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F3028A9689000E10BE6 /* GetCommentsRequestMock_PostId2.json */; };
 		405049D328A69186000F5084 /* InterviewProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049D228A69186000F5084 /* InterviewProjectApp.swift */; };
 		405049D728A69188000F5084 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405049D628A69188000F5084 /* Assets.xcassets */; };
 		405049DA28A69188000F5084 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405049D928A69188000F5084 /* Preview Assets.xcassets */; };
@@ -72,6 +77,11 @@
 		402D2F1E28A9480A00E10BE6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		402D2F2028A9494B00E10BE6 /* DeleteCommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCommentRequest.swift; sourceTree = "<group>"; };
 		402D2F2528A94D6A00E10BE6 /* Collections+safeSubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+safeSubscript.swift"; sourceTree = "<group>"; };
+		402D2F2728A962DA00E10BE6 /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
+		402D2F2A28A963C500E10BE6 /* JsonPlaceholderWebRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPlaceholderWebRepositoryTests.swift; sourceTree = "<group>"; };
+		402D2F2C28A9644300E10BE6 /* GetPostsRequestMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetPostsRequestMock.json; sourceTree = "<group>"; };
+		402D2F2E28A9677900E10BE6 /* GetCommentsRequestMock_PostId1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetCommentsRequestMock_PostId1.json; sourceTree = "<group>"; };
+		402D2F3028A9689000E10BE6 /* GetCommentsRequestMock_PostId2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetCommentsRequestMock_PostId2.json; sourceTree = "<group>"; };
 		405049CF28A69186000F5084 /* InterviewProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterviewProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405049D228A69186000F5084 /* InterviewProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewProjectApp.swift; sourceTree = "<group>"; };
 		405049D628A69188000F5084 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -183,6 +193,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		402D2F2928A963AD00E10BE6 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				402D2F2C28A9644300E10BE6 /* GetPostsRequestMock.json */,
+				402D2F2E28A9677900E10BE6 /* GetCommentsRequestMock_PostId1.json */,
+				402D2F3028A9689000E10BE6 /* GetCommentsRequestMock_PostId2.json */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		405049C628A69186000F5084 = {
 			isa = PBXGroup;
 			children = (
@@ -223,7 +243,10 @@
 		405049E728A69188000F5084 /* InterviewProjectTests */ = {
 			isa = PBXGroup;
 			children = (
+				402D2F2928A963AD00E10BE6 /* Mocks */,
 				405049E828A69188000F5084 /* InterviewProjectTests.swift */,
+				402D2F2728A962DA00E10BE6 /* JsonLoader.swift */,
+				402D2F2A28A963C500E10BE6 /* JsonPlaceholderWebRepositoryTests.swift */,
 			);
 			path = InterviewProjectTests;
 			sourceTree = "<group>";
@@ -413,6 +436,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				402D2F2F28A9677900E10BE6 /* GetCommentsRequestMock_PostId1.json in Resources */,
+				402D2F3128A9689000E10BE6 /* GetCommentsRequestMock_PostId2.json in Resources */,
+				402D2F2D28A9644300E10BE6 /* GetPostsRequestMock.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +492,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				402D2F2B28A963C500E10BE6 /* JsonPlaceholderWebRepositoryTests.swift in Sources */,
+				402D2F2828A962DA00E10BE6 /* JsonLoader.swift in Sources */,
 				405049E928A69188000F5084 /* InterviewProjectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

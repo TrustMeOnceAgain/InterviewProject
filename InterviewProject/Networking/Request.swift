@@ -51,7 +51,12 @@ typealias Parameters = [String: Any]
 
 private extension Parameters {
     func encode() -> Data? {
-        try? JSONSerialization.data(withJSONObject: self)
+        do {
+            return try JSONSerialization.data(withJSONObject: self)
+        } catch let error {
+            print("\(#function): \(error.localizedDescription)")
+            return nil
+        }
     }
     
     func encode() -> [URLQueryItem] {
