@@ -1,9 +1,10 @@
 # Interview Project
 ![min iOS version: 15.0](https://img.shields.io/badge/iOS-15.0%2B-blue)
 ## Description
-It is a simple app that uses `SwiftUI`, `Combine` and `CoreData`. This project has no business value.
+It is a simple app that uses `SwiftUI`, `Combine` and `CoreData`.  
+This project has no business value.  
 No external libraries were used.
-It is written with MVVM in mind where the data operations are performed on the ViewModel layer.
+It is written with `MVVM` in mind where the data operations are performed on the `ViewModel` layer.
 
 ## Installation
 Simply clone the repo and open the `InterviewProject.xcodeproj` file in Xcode.
