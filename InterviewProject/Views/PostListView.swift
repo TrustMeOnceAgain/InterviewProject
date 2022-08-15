@@ -24,11 +24,11 @@ struct PostListView: View {
             .toolbar {
                 toolbarView
             }
-            .alert(item: $viewModel.addedPost) { post in // TODO: remove or use it
+            .alert(item: $viewModel.addedPost) { post in
                 Alert(title: Text("Added new post"),
                       message: Text("Id: \(post.id)\nTitle: \(post.title)\nBody: \(post.body)"),
-                      dismissButton: .destructive(Text("Delete"),
-                                                  action: { viewModel.deleteWebPost(id: post.id) }))
+                      dismissButton: .default(Text("OK"),
+                                              action: { viewModel.addedPost = nil }))
             }
     }
 }

@@ -23,6 +23,5 @@ struct MockedData {
         MockedRequest(request: DeleteCommentRequest(id: 2), response: .success(nil)),
         MockedRequest(request: DeleteCommentRequest(id: 3), response: .success(nil)),
         MockedRequest(request: DeleteCommentRequest(id: 4), response: .failure(.parsingFailure))
-        
     ]
 }

@@ -12,7 +12,7 @@ import CoreData
 
 class PostListViewModel: ObservableObject {
     
-    @Published var dataStatus: ViewDataStatus<[Post]> = .notLoaded
+    @Published private(set) var dataStatus: ViewDataStatus<[Post]> = .notLoaded
     @Published var usingLocalData: Bool = true
     @Published var addedPost: Post?
     @Published var sortedAscending: Bool = true
@@ -64,6 +64,7 @@ class PostListViewModel: ObservableObject {
     func saveToLocalPosts() {
         guard let webPosts = webPosts else { print("There is no data to save"); return }
         
+        // Deleting data first simplifies saving data process
         let semaphore = DispatchSemaphore(value: 0)
         dbRepository
             .deleteAllPosts()
@@ -133,7 +134,6 @@ class PostListViewModel: ObservableObject {
                     }
                 })
             .store(in: &cancellable)
-        
     }
     
     private func setupPosts() {

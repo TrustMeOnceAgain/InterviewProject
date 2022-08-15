@@ -10,7 +10,7 @@ import Foundation
 
 class CommentListViewModel: ObservableObject {
     
-    @Published var dataStatus: ViewDataStatus<[Comment]> = .notLoaded
+    @Published private(set) var dataStatus: ViewDataStatus<[Comment]> = .notLoaded
     @Published var sortedAscending: Bool = true  {
         didSet {
             comments = comments?.sorted(by: sortedAscending ? (<) : (>))

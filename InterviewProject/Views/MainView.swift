@@ -9,13 +9,11 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        VStack {
-            Spacer()
+        List {
             NavigationLink("Go to posts") {
                 PostListView(webRepository: DIManager.shared.jsonPlaceholderWebRepository,
                              dbRepository: DIManager.shared.jsonPlaceholderDBRepository)
             }
-            Spacer()
         }
         .navigationTitle("Main view")
     }
