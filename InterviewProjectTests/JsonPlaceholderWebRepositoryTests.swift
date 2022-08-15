@@ -31,7 +31,6 @@ class JsonPlaceholderWebRepositoryTests: XCTestCase {
                 receiveCompletion: { _ in },
                 receiveValue: { posts in
                     resultPosts = posts
-                    
                     expectation.fulfill()
                 })
             .store(in: &cancellable)
@@ -63,6 +62,48 @@ class JsonPlaceholderWebRepositoryTests: XCTestCase {
         
         wait(for: [expectation], timeout: expectationTimeout)
         XCTAssertEqual(resultPosts, expectedResult)
+    }
+    
+    func testCreatePost() {
+        let mockedRequests = [MockedRequest(request: CreatePostRequest(userId: 1, title: "Title", body: "Body"), response: .success(JsonLoader.loadData("CreatePostRequestMock")))]
+        let repository = JsonPlaceholderWebRepository(networkService: MockedNetworkService(mockedRequests: mockedRequests))
+        let expectedResult: Post = Post(id: 101, userId: 1, title: "Title", body: "Body")
+        
+        let expectation = XCTestExpectation(description: "CreatePostExpectation")
+        var resultPost: Post? = nil
+        
+        repository
+            .createPost(userId: 1, title: "Title", body: "Body")
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { post in
+                    resultPost = post
+                    expectation.fulfill()
+                })
+            .store(in: &cancellable)
+        
+        wait(for: [expectation], timeout: expectationTimeout)
+        XCTAssertEqual(resultPost, expectedResult)
+    }
+    
+    func testDeletePost() {
+        let mockedRequests = [MockedRequest(request: DeletePostRequest(id: 1), response: .success(nil))]
+        let repository = JsonPlaceholderWebRepository(networkService: MockedNetworkService(mockedRequests: mockedRequests))
+        
+        let expectation = XCTestExpectation(description: "DeletePostExpectation")
+        
+        repository
+            .deletePost(id: 1)
+            .sink(
+                receiveCompletion: {
+                    guard case .finished = $0 else { XCTFail("There should be no error"); return }
+                    expectation.fulfill()
+                },
+                receiveValue: { _ in }
+            )
+            .store(in: &cancellable)
+        
+        wait(for: [expectation], timeout: expectationTimeout)
     }
     
     func testGetComments() {
@@ -98,5 +139,25 @@ class JsonPlaceholderWebRepositoryTests: XCTestCase {
         wait(for: [expectation], timeout: expectationTimeout)
         XCTAssertEqual(resultCommentsForPost1, expectedResultForPost1)
         XCTAssertEqual(resultCommentsForPost2, expectedResultForPost2)
+    }
+    
+    func testDeleteComment() {
+        let mockedRequests = [MockedRequest(request: DeleteCommentRequest(id: 1), response: .success(nil))]
+        let repository = JsonPlaceholderWebRepository(networkService: MockedNetworkService(mockedRequests: mockedRequests))
+        
+        let expectation = XCTestExpectation(description: "DeleteCommentExpectation")
+        
+        repository
+            .deleteComment(id: 1)
+            .sink(
+                receiveCompletion: {
+                    guard case .finished = $0 else { XCTFail("There should be no error"); return }
+                    expectation.fulfill()
+                },
+                receiveValue: { _ in }
+            )
+            .store(in: &cancellable)
+        
+        wait(for: [expectation], timeout: expectationTimeout)
     }
 }

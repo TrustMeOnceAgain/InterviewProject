@@ -49,20 +49,29 @@ class PostListViewModel: ObservableObject {
             .sink(
                 receiveCompletion: { print("\(#function): \($0)") },
                 receiveValue: { [weak self] in
-//                    self?.addedPost = $0
                     // Workaround for Post request always returning the same data
                     var id = $0.id
                     while self?.webPosts?.contains(where: { $0.id == id }) == true {
                         id += 1
                     }
                     let post = Post(id: id, userId: $0.userId, title: $0.title, body: $0.body)
+                    self?.addedPost = post
                     self?.webPosts?.append(post)
                 })
             .store(in: &cancellable)
     }
     
     func saveToLocalPosts() {
-        guard !usingLocalData, let webPosts = webPosts else { return }
+        guard let webPosts = webPosts else { print("There is no data to save"); return }
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        dbRepository
+            .deleteAllPosts()
+            .sink(receiveCompletion: { _ in semaphore.signal() }, receiveValue: { _ in })
+            .store(in: &cancellable)
+        
+        semaphore.wait()
+        
         dbRepository.storePosts(webPosts)
             .sink(
                 receiveCompletion: { [weak self] completion in
@@ -75,11 +84,9 @@ class PostListViewModel: ObservableObject {
                 },
                 receiveValue: { _ in })
             .store(in: &cancellable)
-
     }
     
     func deleteLocalPosts() {
-        guard usingLocalData else { return }
         dbRepository
             .deleteAllPosts()
             .sink(
@@ -93,7 +100,6 @@ class PostListViewModel: ObservableObject {
     }
     
     func deleteWebPost(id: Int) {
-        guard !usingLocalData else { return }
         webRepository
             .deletePost(id: id)
             .receive(on: RunLoop.main)

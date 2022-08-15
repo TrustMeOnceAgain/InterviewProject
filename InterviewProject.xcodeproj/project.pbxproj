@@ -31,6 +31,10 @@
 		402D2F3C28A97B5000E10BE6 /* EmptyListMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F3A28A97B5000E10BE6 /* EmptyListMock.json */; };
 		402D2F3E28A97CE900E10BE6 /* CreatePostRequestMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F3D28A97CE900E10BE6 /* CreatePostRequestMock.json */; };
 		402D2F3F28A97CE900E10BE6 /* CreatePostRequestMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 402D2F3D28A97CE900E10BE6 /* CreatePostRequestMock.json */; };
+		402D2F4128AA444100E10BE6 /* JsonPlaceholderDBRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F4028AA444100E10BE6 /* JsonPlaceholderDBRepositoryTests.swift */; };
+		402D2F4328AA49B700E10BE6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F4228AA49B700E10BE6 /* MainView.swift */; };
+		402D2F4528AA515E00E10BE6 /* NSManagedObject+convienienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F4428AA515E00E10BE6 /* NSManagedObject+convienienceInit.swift */; };
+		402D2F4628AA515E00E10BE6 /* NSManagedObject+convienienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F4428AA515E00E10BE6 /* NSManagedObject+convienienceInit.swift */; };
 		405049D328A69186000F5084 /* InterviewProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049D228A69186000F5084 /* InterviewProjectApp.swift */; };
 		405049D728A69188000F5084 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405049D628A69188000F5084 /* Assets.xcassets */; };
 		405049DA28A69188000F5084 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405049D928A69188000F5084 /* Preview Assets.xcassets */; };
@@ -95,6 +99,9 @@
 		402D2F3428A97A4D00E10BE6 /* MockedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedData.swift; sourceTree = "<group>"; };
 		402D2F3A28A97B5000E10BE6 /* EmptyListMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = EmptyListMock.json; sourceTree = "<group>"; };
 		402D2F3D28A97CE900E10BE6 /* CreatePostRequestMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CreatePostRequestMock.json; sourceTree = "<group>"; };
+		402D2F4028AA444100E10BE6 /* JsonPlaceholderDBRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPlaceholderDBRepositoryTests.swift; sourceTree = "<group>"; };
+		402D2F4228AA49B700E10BE6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		402D2F4428AA515E00E10BE6 /* NSManagedObject+convienienceInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+convienienceInit.swift"; sourceTree = "<group>"; };
 		405049CF28A69186000F5084 /* InterviewProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterviewProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405049D228A69186000F5084 /* InterviewProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewProjectApp.swift; sourceTree = "<group>"; };
 		405049D628A69188000F5084 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -204,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				402D2F2528A94D6A00E10BE6 /* Collections+safeSubscript.swift */,
+				402D2F4428AA515E00E10BE6 /* NSManagedObject+convienienceInit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -263,6 +271,7 @@
 				402D2F2928A963AD00E10BE6 /* Mocks */,
 				405049E828A69188000F5084 /* InterviewProjectTests.swift */,
 				402D2F2A28A963C500E10BE6 /* JsonPlaceholderWebRepositoryTests.swift */,
+				402D2F4028AA444100E10BE6 /* JsonPlaceholderDBRepositoryTests.swift */,
 				402D2F3228A9713200E10BE6 /* NetworkServiceTests.swift */,
 			);
 			path = InterviewProjectTests;
@@ -324,6 +333,7 @@
 				40EEAE5328A6A7C5000EE69E /* PostListView.swift */,
 				40EEAE5E28A6AEED000EE69E /* CommentListView.swift */,
 				402D2F1628A9305200E10BE6 /* CellView.swift */,
+				402D2F4228AA49B700E10BE6 /* MainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -489,9 +499,11 @@
 				402D2F1328A92ECA00E10BE6 /* HttpMethod.swift in Sources */,
 				408DE9CF28A8E54500FF019C /* JsonPlaceholderDBRepository.swift in Sources */,
 				40504A0928A694A8000F5084 /* RequestError.swift in Sources */,
+				402D2F4328AA49B700E10BE6 /* MainView.swift in Sources */,
 				405049DC28A69188000F5084 /* PersistenceService.swift in Sources */,
 				40504A1728A69938000F5084 /* CreatePostRequest.swift in Sources */,
 				40504A0B28A694FC000F5084 /* MockedRequest.swift in Sources */,
+				402D2F4528AA515E00E10BE6 /* NSManagedObject+convienienceInit.swift in Sources */,
 				402D2F1B28A930E800E10BE6 /* ColorStyle.swift in Sources */,
 				402D2F2128A9494B00E10BE6 /* DeleteCommentRequest.swift in Sources */,
 				405049DF28A69188000F5084 /* InterviewProject.xcdatamodeld in Sources */,
@@ -521,6 +533,8 @@
 				402D2F2B28A963C500E10BE6 /* JsonPlaceholderWebRepositoryTests.swift in Sources */,
 				402D2F3328A9713200E10BE6 /* NetworkServiceTests.swift in Sources */,
 				405049E928A69188000F5084 /* InterviewProjectTests.swift in Sources */,
+				402D2F4628AA515E00E10BE6 /* NSManagedObject+convienienceInit.swift in Sources */,
+				402D2F4128AA444100E10BE6 /* JsonPlaceholderDBRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

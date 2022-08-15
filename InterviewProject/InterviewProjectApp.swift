@@ -13,8 +13,7 @@ struct InterviewProjectApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                PostListView(webRepository: DIManager.shared.jsonPlaceholderWebRepository,
-                             dbRepository: DIManager.shared.jsonPlaceholderDBRepository)
+                MainView()
             }
             .navigationViewStyle(.stack)
         }

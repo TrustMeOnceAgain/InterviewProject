@@ -47,7 +47,7 @@ struct PersistenceService {
     }()
     
     func fetchData<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>) -> AnyPublisher<[T], Error> {
-        return Future<[T], Error> { [weak container] promise in
+        Future<[T], Error> { [weak container] promise in
             do {
                 try container?.viewContext.performAndWait {
                     let result = try fetchRequest.execute()
