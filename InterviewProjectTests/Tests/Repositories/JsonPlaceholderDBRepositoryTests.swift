@@ -115,32 +115,6 @@ class JsonPlaceholderDBRepositoryTests: XCTestCase {
         XCTAssertEqual(resultPosts, expectedResult)
     }
     
-    private func addMockedData() {
-        let viewContext = persistanceService.container.viewContext
-        for index in 0..<10 {
-            let newPost = PostCD(context: viewContext)
-            newPost.id = Int32(index)
-            newPost.userId = Int32(index * 10)
-            newPost.title = "Title: \(index)"
-            newPost.body = "Body for index: \(index)"
-        }
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            print("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-    }
-    
-    private func deleteAllData() {
-        let semaphore = DispatchSemaphore(value: 0)
-        persistanceService
-            .deleteAllData(for: .post)
-            .sink(receiveCompletion: { _ in semaphore.signal() }, receiveValue: { _ in })
-            .store(in: &cancellable)
-        semaphore.wait()
-    }
-    
     private func createPersistenceService(withData: Bool) -> PersistenceService {
         
         let persistanceService = PersistenceService(inMemory: true)

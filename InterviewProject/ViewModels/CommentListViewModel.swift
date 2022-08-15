@@ -60,6 +60,7 @@ class CommentListViewModel: ObservableObject {
             .receive(on: RunLoop.main)
             .sink(
                 receiveCompletion: { [weak self] in
+                    print("\(#function): \($0)")
                     guard case .failure(let error) = $0 else { return }
                     self?.dataStatus = .error(error)
                 },

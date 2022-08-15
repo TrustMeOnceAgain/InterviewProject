@@ -324,10 +324,10 @@
 		40EEAE5228A6A7B5000EE69E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				40EEAE5328A6A7C5000EE69E /* PostListView.swift */,
-				40EEAE5E28A6AEED000EE69E /* CommentListView.swift */,
 				402D2F1628A9305200E10BE6 /* CellView.swift */,
 				402D2F4228AA49B700E10BE6 /* MainView.swift */,
+				40EEAE5328A6A7C5000EE69E /* PostListView.swift */,
+				40EEAE5E28A6AEED000EE69E /* CommentListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
