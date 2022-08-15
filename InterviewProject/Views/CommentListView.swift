@@ -74,12 +74,12 @@ extension CommentListView {
     }
     
     private func createCellView(from model: Comment) -> CellView {
-        CellView(viewModel: CellViewModel(title: model.body, leftText: String(model.id)))
+        CellView(viewModel: CellViewModel(title: model.name, leftText: String(model.id)))
     }
 }
 
 struct CommentListView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentListView(postId: 1, repository: JsonPlaceholderWebRepository(networkService: MockedNetworkService(mockedRequests: [])))
+        CommentListView(postId: 1, repository: JsonPlaceholderWebRepository(networkService: MockedNetworkService()))
     }
 }

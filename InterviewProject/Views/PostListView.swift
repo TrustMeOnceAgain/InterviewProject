@@ -115,7 +115,7 @@ struct PostListView_Previews: PreviewProvider {
         Group {
             ForEach(ColorScheme.allCases, id: \.hashValue) { colorScheme in
                 NavigationView {
-                PostListView(webRepository: JsonPlaceholderWebRepository(networkService: MockedNetworkService(mockedRequests: [])), dbRepository: JsonPlaceholderDBRepository(persistenceService: PersistenceService.preview))
+                PostListView(webRepository: JsonPlaceholderWebRepository(networkService: MockedNetworkService()), dbRepository: JsonPlaceholderDBRepository(persistenceService: PersistenceService.preview))
                     .preferredColorScheme(colorScheme)
                 }
             }
