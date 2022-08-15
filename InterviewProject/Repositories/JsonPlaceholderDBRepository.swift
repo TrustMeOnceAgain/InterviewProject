@@ -30,14 +30,7 @@ class JsonPlaceholderDBRepository {
     }
     
     func storePosts(_ posts: [Post]) -> AnyPublisher<Void, RequestError> {
-        posts.forEach { post in
-            let postCD = PostCD(context: persistenceService.container.viewContext)
-            postCD.id = Int32(post.id)
-            postCD.userId = Int32(post.userId)
-            postCD.title = post.title
-            postCD.body = post.body
-        }
-        
+        posts.forEach { $0.addEntity(to: persistenceService.container.viewContext) }
         return persistenceService
             .storeData()
             .mapError { error in

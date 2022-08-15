@@ -35,6 +35,7 @@
 		402D2F4328AA49B700E10BE6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F4228AA49B700E10BE6 /* MainView.swift */; };
 		402D2F4528AA515E00E10BE6 /* NSManagedObject+convienienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F4428AA515E00E10BE6 /* NSManagedObject+convienienceInit.swift */; };
 		402D2F4628AA515E00E10BE6 /* NSManagedObject+convienienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F4428AA515E00E10BE6 /* NSManagedObject+convienienceInit.swift */; };
+		402D2F4828AA6AC500E10BE6 /* HasEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D2F4728AA6AC500E10BE6 /* HasEntity.swift */; };
 		405049D328A69186000F5084 /* InterviewProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405049D228A69186000F5084 /* InterviewProjectApp.swift */; };
 		405049D728A69188000F5084 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405049D628A69188000F5084 /* Assets.xcassets */; };
 		405049DA28A69188000F5084 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405049D928A69188000F5084 /* Preview Assets.xcassets */; };
@@ -102,6 +103,7 @@
 		402D2F4028AA444100E10BE6 /* JsonPlaceholderDBRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPlaceholderDBRepositoryTests.swift; sourceTree = "<group>"; };
 		402D2F4228AA49B700E10BE6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		402D2F4428AA515E00E10BE6 /* NSManagedObject+convienienceInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+convienienceInit.swift"; sourceTree = "<group>"; };
+		402D2F4728AA6AC500E10BE6 /* HasEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasEntity.swift; sourceTree = "<group>"; };
 		405049CF28A69186000F5084 /* InterviewProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterviewProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405049D228A69186000F5084 /* InterviewProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewProjectApp.swift; sourceTree = "<group>"; };
 		405049D628A69188000F5084 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			children = (
 				40504A0C28A696AE000F5084 /* Post.swift */,
 				40504A0F28A696CB000F5084 /* Comment.swift */,
+				402D2F4728AA6AC500E10BE6 /* HasEntity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				40EEAE5428A6A7C5000EE69E /* PostListView.swift in Sources */,
 				40504A0728A69498000F5084 /* NetworkingService.swift in Sources */,
 				405049D328A69186000F5084 /* InterviewProjectApp.swift in Sources */,
+				402D2F4828AA6AC500E10BE6 /* HasEntity.swift in Sources */,
 				402D2F1928A930A200E10BE6 /* CellViewModel.swift in Sources */,
 				402D2F1728A9305200E10BE6 /* CellView.swift in Sources */,
 				40504A1028A696CB000F5084 /* Comment.swift in Sources */,
